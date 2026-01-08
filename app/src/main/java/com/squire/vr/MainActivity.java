@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView statusText;
     private SwitchCompat autoSideloadSwitch;
     private SharedPreferences prefs;
+    private BroadcastReceiver installResultReceiver;
     private OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
@@ -59,6 +60,38 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Listen for final install results (v3.4)
+        installResultReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (InstallReceiver.ACTION_INSTALL_RESULT.equals(intent.getAction())) {
+                    boolean success = intent.getBooleanExtra("success", false);
+                    boolean obbMoved = intent.getBooleanExtra("obbMoved", false);
+                    String obbPath = intent.getStringExtra("obbPath");
+                    String pkgName = intent.getStringExtra("pkgName");
+                    
+                    StringBuilder summary = new StringBuilder();
+                    if (success) {
+                        summary.append("✅ APK Installed: ").append(pkgName).append("\n\n");
+                        if (obbMoved) {
+                            summary.append("✅ OBB Moved to:\n").append(obbPath);
+                        } else {
+                            summary.append("⚠️ OBB: Not Found or skipped.");
+                        }
+                    } else {
+                        summary.append("❌ Installation Failed or Aborted.");
+                    }
+
+                    new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Sideload Summary")
+                        .setMessage(summary.toString())
+                        .setPositiveButton("Awesome", null)
+                        .show();
+                }
+            }
+        };
+        registerReceiver(installResultReceiver, new android.content.IntentFilter(InstallReceiver.ACTION_INSTALL_RESULT), Context.RECEIVER_EXPORTED);
 
         startAppFlow();
     }
@@ -110,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
                                         public void onStatus(String msg) {
                                             runOnUiThread(() -> {
                                                 currentDialog.setMessage(msg);
+                                                // Keep it visible while they handle the quest prompt
                                                 if (msg.contains("Check Quest Prompt")) {
+                                                    currentDialog.setTitle("Squire: Awaiting Install...");
                                                     currentDialog.setIndeterminate(true);
                                                 }
                                             });
@@ -119,21 +154,9 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onDone(boolean obbMoved, String obbPath) {
                                             runOnUiThread(() -> {
+                                                // We DON'T dismiss here anymore, or we dismiss and wait for the Broadcast
                                                 currentDialog.dismiss();
-                                                
-                                                StringBuilder summary = new StringBuilder();
-                                                summary.append("✅ APK Installer opened successfully.\n\n");
-                                                if (obbMoved) {
-                                                    summary.append("✅ OBB Folder moved:\n").append(obbPath);
-                                                } else {
-                                                    summary.append("⚠️ OBB Folder: Not Found or skipped.");
-                                                }
-
-                                                new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
-                                                    .setTitle("Sideload Summary")
-                                                    .setMessage(summary.toString())
-                                                    .setPositiveButton("Got it", null)
-                                                    .show();
+                                                Toast.makeText(MainActivity.this, "Sideload sequence staged.", Toast.LENGTH_SHORT).show();
                                             });
                                         }
 

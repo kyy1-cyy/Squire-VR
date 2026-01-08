@@ -42,37 +42,16 @@ public class AutoInstaller {
                 String apkName = mainApk.getName();
                 String pkgName = apkName.endsWith(".apk") ? apkName.substring(0, apkName.length() - 4) : apkName;
                 
-                // 1. Move OBB Folder (Fully Recursive Search)
-                callback.onStatus("Auto-Sideload: Searching for OBB Folder...");
+                // 1. Find OBB Source (Deep search)
+                callback.onStatus("Auto-Sideload: Searching for OBB...");
                 File obbSource = findObbFolderRecursive(extractRoot, pkgName);
+                String obbSourcePath = (obbSource != null) ? obbSource.getAbsolutePath() : null;
 
-                boolean obbMoved = false;
-                String finalObbPath = "Not Found";
-
-                if (obbSource != null && obbSource.exists()) {
-                    callback.onStatus("Auto-Sideload: Moving OBB Folder...");
-                    Log.d(TAG, "Found OBB Source: " + obbSource.getAbsolutePath());
-                    File obbDestRoot = new File("/sdcard/Android/obb/");
-                    if (!obbDestRoot.exists()) obbDestRoot.mkdirs();
-                    File finalObbDest = new File(obbDestRoot, pkgName);
-                    
-                    if (moveFolder(obbSource, finalObbDest)) {
-                        Log.d(TAG, "OBB move successful: " + pkgName);
-                        obbMoved = true;
-                        finalObbPath = finalObbDest.getAbsolutePath();
-                    } else {
-                        Log.e(TAG, "Failed to move OBB folder: " + pkgName);
-                        finalObbPath = "Move Failed";
-                    }
-                } else {
-                    Log.w(TAG, "No OBB folder found matching: " + pkgName);
-                }
-
-                // 2. Intent Installation
-                callback.onStatus("Auto-Sideload: Opening APK Installer...");
-                installApkIntent(context, mainApk);
+                // 2. Start Session Installation (Post-install OBB logic is in InstallReceiver)
+                callback.onStatus("Auto-Sideload: Installing APK...");
+                installApkSession(context, mainApk, pkgName, obbSourcePath, callback);
                 
-                callback.onDone(obbMoved, finalObbPath);
+                callback.onDone(false, "Staged"); // MainActivity will wait for the Broadcast
             } catch (Exception e) {
                 Log.e(TAG, "AutoInstall failed", e);
                 callback.onError(e.getMessage());
@@ -113,18 +92,44 @@ public class AutoInstaller {
         return null;
     }
 
-    private static void installApkIntent(Context context, File apkFile) {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri apkUri;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            apkUri = androidx.core.content.FileProvider.getUriForFile(context, context.getPackageName() + ".provider", apkFile);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } else {
-            apkUri = Uri.fromFile(apkFile);
+    private static void installApkSession(Context context, File apkFile, String pkgName, String obbSourcePath, InstallCallback callback) throws Exception {
+        PackageInstaller packageInstaller = context.getPackageManager().getPackageInstaller();
+        PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL);
+        params.setAppPackageName(pkgName);
+
+        int sessionId = packageInstaller.createSession(params);
+        PackageInstaller.Session session = packageInstaller.openSession(sessionId);
+
+        try (InputStream in = new FileInputStream(apkFile);
+             OutputStream out = session.openWrite("package", 0, apkFile.length())) {
+            
+            byte[] buffer = new byte[1024 * 1024]; 
+            int n;
+            long totalRead = 0;
+            long fileSize = apkFile.length();
+            
+            while ((n = in.read(buffer)) != -1) {
+                out.write(buffer, 0, n);
+                totalRead += n;
+                int progress = (int) ((totalRead * 100) / fileSize);
+                callback.onStatus("Preparing APK: " + progress + "%");
+            }
+            session.fsync(out);
         }
-        intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+
+        // Custom action for InstallReceiver
+        Intent intent = new Intent(context, InstallReceiver.class);
+        intent.setAction("com.squire.vr.INSTALL_COMPLETE");
+        intent.putExtra("pkgName", pkgName);
+        intent.putExtra("obbSourcePath", obbSourcePath);
+        
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+            context, sessionId, intent, 
+            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
+        );
+
+        callback.onStatus("Installing APK... Check Quest Prompt");
+        session.commit(pendingIntent.getIntentSender());
     }
 
     private static boolean moveFolder(File source, File dest) {

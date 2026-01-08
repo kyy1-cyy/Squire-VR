@@ -7,6 +7,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import android.content.SharedPreferences;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.gson.Gson;
@@ -32,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private GameAdapter adapter;
     private ProgressBar loader;
     private TextView statusText;
+    private SwitchCompat autoSideloadSwitch;
+    private SharedPreferences prefs;
     private OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(15, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
@@ -46,6 +50,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.game_list);
         loader = findViewById(R.id.loader);
         statusText = findViewById(R.id.status_text);
+        autoSideloadSwitch = findViewById(R.id.auto_sideload_switch);
+        
+        prefs = getSharedPreferences("squire_prefs", MODE_PRIVATE);
+        autoSideloadSwitch.setChecked(prefs.getBoolean("auto_sideload", true));
+        autoSideloadSwitch.setOnCheckedChangeListener((btn, checked) -> {
+            prefs.edit().putBoolean("auto_sideload", checked).apply();
+        });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         startAppFlow();
@@ -86,16 +98,51 @@ public class MainActivity extends AppCompatActivity {
 
                         if (intent.hasExtra("complete")) {
                             if (currentDialog != null && currentDialog.isShowing()) {
-                                currentDialog.dismiss();
+                                if (autoSideloadSwitch.isChecked()) {
+                                    String finalSavePath = intent.getStringExtra("savePath");
+                                    if (finalSavePath == null) finalSavePath = "/sdcard/Download/" + intent.getStringExtra("name");
+                                    
+                                    currentDialog.setTitle("Auto-Sideloading...");
+                                    currentDialog.setIndeterminate(true);
+                                    
+                                    AutoInstaller.processExtraction(MainActivity.this, new File(finalSavePath), new AutoInstaller.InstallCallback() {
+                                        @Override
+                                        public void onStatus(String msg) {
+                                            runOnUiThread(() -> currentDialog.setMessage(msg));
+                                        }
+
+                                        @Override
+                                        public void onDone() {
+                                            runOnUiThread(() -> {
+                                                currentDialog.dismiss();
+                                                new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                                                    .setTitle("Sideload Complete")
+                                                    .setMessage("Game installed and OBB moved successfully!\n\n(Install prompt may take a second to appear)")
+                                                    .setPositiveButton("Awesome", null)
+                                                    .show();
+                                            });
+                                        }
+
+                                        @Override
+                                        public void onError(String msg) {
+                                            runOnUiThread(() -> {
+                                                currentDialog.dismiss();
+                                                showError("Auto-Sideload Error: " + msg);
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    currentDialog.dismiss();
+                                    runOnUiThread(() -> {
+                                        new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                                            .setTitle("Download Finished")
+                                            .setMessage("Your game has been downloaded and extracted successfully!\n\nLocation: /sdcard/Download")
+                                            .setPositiveButton("Close", null)
+                                            .setCancelable(false)
+                                            .show();
+                                    });
+                                }
                             }
-                            runOnUiThread(() -> {
-                                new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
-                                    .setTitle("Download Finished")
-                                    .setMessage("Your game has been downloaded and extracted successfully!\n\nLocation: /sdcard/Download")
-                                    .setPositiveButton("Close", null)
-                                    .setCancelable(false)
-                                    .show();
-                            });
                             return;
                         }
 

@@ -197,7 +197,7 @@ public class StreamingService extends Service {
             int exitCode = p7zipProcess.waitFor();
             if (isStopped) return;
             if (exitCode == 0) {
-                broadcastComplete(releaseName);
+                broadcastComplete(releaseName, savePath);
             } else {
                 throw new Exception("7z Exit " + exitCode + "\n7z Err: " + p7zError.toString());
             }
@@ -270,11 +270,13 @@ public class StreamingService extends Service {
         sendBroadcast(intent);
     }
     
-    private void broadcastComplete(String releaseName) {
+    private void broadcastComplete(String releaseName, String savePath) {
         if (isStopped) return;
         Log.i(TAG, "Broadcasting completion for: " + releaseName);
         Intent intent = new Intent(Config.ACTION_PROGRESS);
         intent.putExtra("complete", true);
+        intent.putExtra("name", releaseName);
+        intent.putExtra("savePath", savePath);
         sendBroadcast(intent);
         
         // Brief delay to ensure broadcast is sent before service dies

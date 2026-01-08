@@ -168,10 +168,10 @@ public class MainActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onDone(boolean obbMoved, String obbPath) {
+                                            // DO NOT DISMISS HERE
+                                            // The InstallReceiver will dismiss when the job is truly done.
                                             runOnUiThread(() -> {
-                                                // We DON'T dismiss here anymore! 
-                                                // We wait for the InstallReceiver to send the final result broadcast.
-                                                Toast.makeText(MainActivity.this, "Handing off to System...", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(MainActivity.this, "Check your Quest for the Install prompt!", Toast.LENGTH_LONG).show();
                                             });
                                         }
 

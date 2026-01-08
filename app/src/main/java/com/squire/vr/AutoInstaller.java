@@ -42,29 +42,51 @@ public class AutoInstaller {
                 String apkName = mainApk.getName();
                 int lastDot = apkName.lastIndexOf('.');
                 String folderName = (lastDot > 0) ? apkName.substring(0, lastDot) : apkName;
+
+                // Use Android's API to get the REAL package name for the OBB destination
+                String realPkgName = folderName; // Default fallback
+                try {
+                    android.content.pm.PackageInfo info = context.getPackageManager().getPackageArchiveInfo(mainApk.getAbsolutePath(), 0);
+                    if (info != null && info.packageName != null) {
+                        realPkgName = info.packageName;
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, "Failed to get real package name", e);
+                }
                 
-                // 1. Find OBB Source (STRICT SIBLING ONLY per user request)
-                callback.onStatus("Auto-Sideload: Looking for OBB sibling...");
-                Log.d(TAG, "Search folder: " + folderName + " in " + mainApk.getParent());
+                // 1. Find OBB Source (Sibling-Aware)
+                callback.onStatus("Auto-Sideload: Looking for OBB folder...");
+                Log.d(TAG, "Looking for OBB folder matching: " + folderName);
 
                 File obbSource = null;
                 File parentDir = mainApk.getParentFile();
+                
+                // NEW: Robust check - Look at EVERY folder next to the APK
                 File[] siblings = parentDir.listFiles();
                 if (siblings != null) {
                     for (File s : siblings) {
-                        if (s.isDirectory() && s.getName().equalsIgnoreCase(folderName)) {
-                            obbSource = s;
-                            Log.d(TAG, "OBB Sibling found: " + s.getAbsolutePath());
-                            break;
+                        if (s.isDirectory()) {
+                            String sName = s.getName().trim();
+                            // Check if name matches exactly (ignore case)
+                            if (sName.equalsIgnoreCase(folderName)) {
+                                obbSource = s;
+                                break;
+                            }
+                            // Also check if any folder name IS the package name
+                            if (sName.equalsIgnoreCase(realPkgName)) {
+                                obbSource = s;
+                                break;
+                            }
                         }
                     }
                 }
                 
                 String obbSourcePath = (obbSource != null) ? obbSource.getAbsolutePath() : null;
+                Log.d(TAG, "Final OBB Source: " + obbSourcePath + " | Target Pkg: " + realPkgName);
 
                 // 2. Start Session Installation
                 callback.onStatus("Auto-Sideload: Installing APK...");
-                installApkSession(context, mainApk, folderName, obbSourcePath, callback);
+                installApkSession(context, mainApk, realPkgName, obbSourcePath, callback);
                 
                 callback.onDone(false, "Staged");
             } catch (Exception e) {

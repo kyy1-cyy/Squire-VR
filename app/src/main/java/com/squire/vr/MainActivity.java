@@ -67,7 +67,12 @@ public class MainActivity extends AppCompatActivity {
         installResultReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                if (InstallReceiver.ACTION_INSTALL_RESULT.equals(intent.getAction())) {
+                String action = intent.getAction();
+                if (InstallReceiver.ACTION_INSTALL_RESULT.equals(action)) {
+                    if (currentDialog != null && currentDialog.isShowing()) {
+                        currentDialog.dismiss();
+                    }
+
                     boolean success = intent.getBooleanExtra("success", false);
                     boolean obbMoved = intent.getBooleanExtra("obbMoved", false);
                     String obbPath = intent.getStringExtra("obbPath");
@@ -90,10 +95,18 @@ public class MainActivity extends AppCompatActivity {
                         .setMessage(summary.toString())
                         .setPositiveButton("Awesome", null)
                         .show();
+                } else if (InstallReceiver.ACTION_INSTALL_STATUS.equals(action)) {
+                    String status = intent.getStringExtra("status");
+                    if (currentDialog != null && currentDialog.isShowing()) {
+                        currentDialog.setMessage(status);
+                    }
                 }
             }
         };
-        registerReceiver(installResultReceiver, new android.content.IntentFilter(InstallReceiver.ACTION_INSTALL_RESULT), Context.RECEIVER_EXPORTED);
+        android.content.IntentFilter filter = new android.content.IntentFilter();
+        filter.addAction(InstallReceiver.ACTION_INSTALL_RESULT);
+        filter.addAction(InstallReceiver.ACTION_INSTALL_STATUS);
+        registerReceiver(installResultReceiver, filter, Context.RECEIVER_EXPORTED);
 
         startAppFlow();
     }
@@ -156,9 +169,9 @@ public class MainActivity extends AppCompatActivity {
                                         @Override
                                         public void onDone(boolean obbMoved, String obbPath) {
                                             runOnUiThread(() -> {
-                                                // We DON'T dismiss here anymore, or we dismiss and wait for the Broadcast
-                                                currentDialog.dismiss();
-                                                Toast.makeText(MainActivity.this, "Sideload sequence staged.", Toast.LENGTH_SHORT).show();
+                                                // We DON'T dismiss here anymore! 
+                                                // We wait for the InstallReceiver to send the final result broadcast.
+                                                Toast.makeText(MainActivity.this, "Handing off to System...", Toast.LENGTH_SHORT).show();
                                             });
                                         }
 

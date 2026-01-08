@@ -10,6 +10,7 @@ import java.io.File;
 public class InstallReceiver extends BroadcastReceiver {
     private static final String TAG = "SquireInstallReceiver";
     public static final String ACTION_INSTALL_RESULT = "com.squire.vr.INSTALL_RESULT";
+    public static final String ACTION_INSTALL_STATUS = "com.squire.vr.INSTALL_STATUS";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -37,6 +38,11 @@ public class InstallReceiver extends BroadcastReceiver {
         if (success) {
             Log.d(TAG, "Install successful. Proceeding to OBB move.");
             if (obbSourcePath != null && pkgName != null) {
+                // Notify MainActivity that we are now moving OBB
+                Intent statusIntent = new Intent(ACTION_INSTALL_STATUS);
+                statusIntent.putExtra("status", "Auto-Sideload: Moving OBB Folder...");
+                context.sendBroadcast(statusIntent);
+
                 File source = new File(obbSourcePath);
                 File dest = new File("/sdcard/Android/obb/" + pkgName);
                 if (source.exists()) {

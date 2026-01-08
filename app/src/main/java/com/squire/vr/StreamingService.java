@@ -265,7 +265,7 @@ public class StreamingService extends Service {
     private void broadcastError(String msg) {
         if (isStopped) return;
         Log.e(TAG, "Broadcasting error: " + msg);
-        Intent intent = new Intent("com.trd.apk.DOWNLOAD_PROGRESS");
+        Intent intent = new Intent(Config.ACTION_PROGRESS);
         intent.putExtra("error", msg);
         sendBroadcast(intent);
     }
@@ -273,7 +273,7 @@ public class StreamingService extends Service {
     private void broadcastComplete(String releaseName) {
         if (isStopped) return;
         Log.i(TAG, "Broadcasting completion for: " + releaseName);
-        Intent intent = new Intent("com.trd.apk.DOWNLOAD_PROGRESS");
+        Intent intent = new Intent(Config.ACTION_PROGRESS);
         intent.putExtra("complete", true);
         sendBroadcast(intent);
         

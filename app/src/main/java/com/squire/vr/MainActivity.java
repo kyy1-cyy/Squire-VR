@@ -493,7 +493,7 @@ public class MainActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
                 
                 // Initialize Search
-                androidx.appcompat.widget.SearchView searchView = findViewById(com.trd.apk.R.id.search_bar);
+                androidx.appcompat.widget.SearchView searchView = findViewById(com.squire.vr.R.id.search_bar);
                 if (searchView != null) {
                     searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
                         @Override

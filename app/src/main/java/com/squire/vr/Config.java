@@ -9,5 +9,5 @@ public class Config {
     public static final String VRP_DEFAULT_PASSWORD = "gL59VfgPxoHR";
     
     // Broadcast Intent Actions
-    public static final String ACTION_PROGRESS = "com.trd.apk.DOWNLOAD_PROGRESS";
+    public static final String ACTION_PROGRESS = "com.squire.vr.DOWNLOAD_PROGRESS";
 }

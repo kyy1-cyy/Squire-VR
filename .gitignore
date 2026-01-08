@@ -24,4 +24,8 @@ local.properties
 # APKs and other generated files
 *.apk
 /temp_archives/
+
+# Workspace and Source Images
+*.code-workspace
+images.png
  

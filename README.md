@@ -13,7 +13,7 @@ Squire VR is a native Android app that lets you browse and download games direct
 ### How to use
 1. Download the latest `.apk` from the **Releases** section.
 2. Sideload it to your Quest once 
-3. Open the app and give it "All Files Access" (it needs this to save games to your `/sdcard/Download` folder).
+3. Open the app and give it "All Files Access" by scrolling down to the app and clicking allow (it needs this to save games to your `/sdcard/Download` folder).
 4. Find a game, hit download.
 
 ### Credits

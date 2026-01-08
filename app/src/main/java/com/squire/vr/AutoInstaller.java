@@ -35,13 +35,9 @@ public class AutoInstaller {
                     return;
                 }
 
-                // Pick the largest APK (likely the main game)
+                // Just pick the discovered APK
                 File mainApk = apks.get(0);
-                for (File f : apks) {
-                    if (f.length() > mainApk.length()) mainApk = f;
-                }
-                
-                Log.d(TAG, "Selected Main APK: " + mainApk.getAbsolutePath() + " (" + mainApk.length() + " bytes)");
+                Log.d(TAG, "Selected APK: " + mainApk.getAbsolutePath());
 
                 String apkName = mainApk.getName();
                 String pkgName = apkName.endsWith(".apk") ? apkName.substring(0, apkName.length() - 4) : apkName;

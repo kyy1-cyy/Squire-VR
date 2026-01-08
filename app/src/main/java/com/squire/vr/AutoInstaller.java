@@ -40,12 +40,23 @@ public class AutoInstaller {
                 Log.d(TAG, "Selected APK: " + mainApk.getAbsolutePath());
 
                 String apkName = mainApk.getName();
-                String pkgName = apkName.endsWith(".apk") ? apkName.substring(0, apkName.length() - 4) : apkName;
+                // Strip .apk or .APK (case insensitive)
+                String pkgName = apkName.replaceAll("(?i)\\.apk$", "");
                 
-                // 1. Find OBB Source (Deep search)
+                // 1. Find OBB Source (Sibling-First Search)
                 callback.onStatus("Auto-Sideload: Searching for OBB...");
-                File obbSource = findObbFolderRecursive(extractRoot, pkgName);
+                
+                // First check SIBLING (same directory as APK)
+                File siblingFolder = new File(mainApk.getParentFile(), pkgName);
+                File obbSource = (siblingFolder.exists() && siblingFolder.isDirectory()) ? siblingFolder : null;
+                
+                // If not found as sibling, do deep recursive search (but exclude the extractRoot itself)
+                if (obbSource == null) {
+                    obbSource = findObbFolderRecursive(extractRoot, pkgName, extractRoot);
+                }
+                
                 String obbSourcePath = (obbSource != null) ? obbSource.getAbsolutePath() : null;
+                Log.d(TAG, "Final OBB Source Path: " + obbSourcePath);
 
                 // 2. Start Session Installation (Post-install OBB logic is in InstallReceiver)
                 callback.onStatus("Auto-Sideload: Installing APK...");
@@ -71,11 +82,11 @@ public class AutoInstaller {
         }
     }
 
-    private static File findObbFolderRecursive(File dir, String pkgName) {
+    private static File findObbFolderRecursive(File dir, String pkgName, File rootToIgnore) {
         if (dir == null || !dir.isDirectory()) return null;
         
-        // Exact match check
-        if (dir.getName().equalsIgnoreCase(pkgName)) return dir;
+        // Exact match check (Skip if it's the top level extraction root)
+        if (!dir.equals(rootToIgnore) && dir.getName().equalsIgnoreCase(pkgName)) return dir;
 
         File[] files = dir.listFiles();
         if (files == null) return null;
@@ -85,7 +96,7 @@ public class AutoInstaller {
                 // Check if this child is the target
                 if (f.getName().equalsIgnoreCase(pkgName)) return f;
                 // Otherwise recurse
-                File found = findObbFolderRecursive(f, pkgName);
+                File found = findObbFolderRecursive(f, pkgName, rootToIgnore);
                 if (found != null) return found;
             }
         }

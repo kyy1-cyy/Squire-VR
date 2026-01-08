@@ -43,7 +43,7 @@ public class AutoInstaller {
                 String pkgName = apkName.endsWith(".apk") ? apkName.substring(0, apkName.length() - 4) : apkName;
                 
                 // 1. Move OBB Folder (Search same dir or parent)
-                callback.onStatus("Step 1/2: Preparing OBB folder...");
+                callback.onStatus("Auto-Sideload: Moving OBB Folder...");
                 File obbSource = findObbFolder(mainApk.getParentFile(), pkgName);
                 if (obbSource == null) {
                     obbSource = findObbFolder(extractRoot, pkgName);
@@ -65,7 +65,7 @@ public class AutoInstaller {
                 }
 
                 // 2. Intent Installation (Fast & Simple)
-                callback.onStatus("Step 2/2: Opening Installer...");
+                callback.onStatus("Auto-Sideload: Opening APK Installer...");
                 installApkIntent(context, mainApk);
                 
                 callback.onDone();

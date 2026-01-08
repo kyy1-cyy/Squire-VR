@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace 'com.trd.apk'
+    namespace 'com.squire.vr'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.trd.apk"
+        applicationId "com.squire.vr"
         minSdk 26
         targetSdk 33
         versionCode 1

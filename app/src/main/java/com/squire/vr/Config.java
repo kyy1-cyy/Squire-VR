@@ -1,4 +1,4 @@
-package com.trd.apk;
+package com.squire.vr;
 
 public class Config {
     // API & Sync URLs

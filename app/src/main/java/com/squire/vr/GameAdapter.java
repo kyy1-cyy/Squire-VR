@@ -1,4 +1,4 @@
-package com.trd.apk;
+package com.squire.vr;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.trd.apk;
+package com.squire.vr;
 
 import android.content.Intent;
 import android.os.Bundle;

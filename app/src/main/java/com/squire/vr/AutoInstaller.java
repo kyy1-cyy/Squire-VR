@@ -19,7 +19,7 @@ public class AutoInstaller {
 
     public interface InstallCallback {
         void onStatus(String msg);
-        void onDone();
+        void onDone(boolean obbMoved, String obbPath);
         void onError(String msg);
     }
 
@@ -42,33 +42,37 @@ public class AutoInstaller {
                 String apkName = mainApk.getName();
                 String pkgName = apkName.endsWith(".apk") ? apkName.substring(0, apkName.length() - 4) : apkName;
                 
-                // 1. Move OBB Folder (Search same dir or parent)
-                callback.onStatus("Auto-Sideload: Moving OBB Folder...");
-                File obbSource = findObbFolder(mainApk.getParentFile(), pkgName);
-                if (obbSource == null) {
-                    obbSource = findObbFolder(extractRoot, pkgName);
-                }
+                // 1. Move OBB Folder (Fully Recursive Search)
+                callback.onStatus("Auto-Sideload: Searching for OBB Folder...");
+                File obbSource = findObbFolderRecursive(extractRoot, pkgName);
+
+                boolean obbMoved = false;
+                String finalObbPath = "Not Found";
 
                 if (obbSource != null && obbSource.exists()) {
+                    callback.onStatus("Auto-Sideload: Moving OBB Folder...");
                     Log.d(TAG, "Found OBB Source: " + obbSource.getAbsolutePath());
                     File obbDestRoot = new File("/sdcard/Android/obb/");
                     if (!obbDestRoot.exists()) obbDestRoot.mkdirs();
                     File finalObbDest = new File(obbDestRoot, pkgName);
                     
-                    if (!moveFolder(obbSource, finalObbDest)) {
-                        Log.e(TAG, "Failed to move OBB folder: " + pkgName);
-                    } else {
+                    if (moveFolder(obbSource, finalObbDest)) {
                         Log.d(TAG, "OBB move successful: " + pkgName);
+                        obbMoved = true;
+                        finalObbPath = finalObbDest.getAbsolutePath();
+                    } else {
+                        Log.e(TAG, "Failed to move OBB folder: " + pkgName);
+                        finalObbPath = "Move Failed";
                     }
                 } else {
                     Log.w(TAG, "No OBB folder found matching: " + pkgName);
                 }
 
-                // 2. Intent Installation (Fast & Simple)
+                // 2. Intent Installation
                 callback.onStatus("Auto-Sideload: Opening APK Installer...");
                 installApkIntent(context, mainApk);
                 
-                callback.onDone();
+                callback.onDone(obbMoved, finalObbPath);
             } catch (Exception e) {
                 Log.e(TAG, "AutoInstall failed", e);
                 callback.onError(e.getMessage());
@@ -88,15 +92,23 @@ public class AutoInstaller {
         }
     }
 
-    private static File findObbFolder(File dir, String pkgName) {
-        File folder = new File(dir, pkgName);
-        if (folder.exists() && folder.isDirectory()) return folder;
+    private static File findObbFolderRecursive(File dir, String pkgName) {
+        if (dir == null || !dir.isDirectory()) return null;
         
-        // Search one level up/down just in case of weird extraction nesting
-        File parent = dir.getParentFile();
-        if (parent != null) {
-            folder = new File(parent, pkgName);
-            if (folder.exists() && folder.isDirectory()) return folder;
+        // Exact match check
+        if (dir.getName().equalsIgnoreCase(pkgName)) return dir;
+
+        File[] files = dir.listFiles();
+        if (files == null) return null;
+        
+        for (File f : files) {
+            if (f.isDirectory()) {
+                // Check if this child is the target
+                if (f.getName().equalsIgnoreCase(pkgName)) return f;
+                // Otherwise recurse
+                File found = findObbFolderRecursive(f, pkgName);
+                if (found != null) return found;
+            }
         }
         return null;
     }

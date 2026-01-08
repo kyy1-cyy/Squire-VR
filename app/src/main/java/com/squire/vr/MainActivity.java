@@ -117,11 +117,23 @@ public class MainActivity extends AppCompatActivity {
                                         }
 
                                         @Override
-                                        public void onDone() {
+                                        public void onDone(boolean obbMoved, String obbPath) {
                                             runOnUiThread(() -> {
                                                 currentDialog.dismiss();
-                                                // We don't show a second dialog here because the System Install dialog is likely visible
-                                                Toast.makeText(MainActivity.this, "Sideload sequence completed.", Toast.LENGTH_LONG).show();
+                                                
+                                                StringBuilder summary = new StringBuilder();
+                                                summary.append("✅ APK Installer opened successfully.\n\n");
+                                                if (obbMoved) {
+                                                    summary.append("✅ OBB Folder moved:\n").append(obbPath);
+                                                } else {
+                                                    summary.append("⚠️ OBB Folder: Not Found or skipped.");
+                                                }
+
+                                                new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                                                    .setTitle("Sideload Summary")
+                                                    .setMessage(summary.toString())
+                                                    .setPositiveButton("Got it", null)
+                                                    .show();
                                             });
                                         }
 

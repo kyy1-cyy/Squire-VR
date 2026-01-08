@@ -40,29 +40,33 @@ public class AutoInstaller {
                 Log.d(TAG, "Selected APK: " + mainApk.getAbsolutePath());
 
                 String apkName = mainApk.getName();
-                // Strip .apk or .APK (case insensitive)
-                String pkgName = apkName.replaceAll("(?i)\\.apk$", "");
+                int lastDot = apkName.lastIndexOf('.');
+                String folderName = (lastDot > 0) ? apkName.substring(0, lastDot) : apkName;
                 
-                // 1. Find OBB Source (Sibling-First Search)
-                callback.onStatus("Auto-Sideload: Searching for OBB...");
-                
-                // First check SIBLING (same directory as APK)
-                File siblingFolder = new File(mainApk.getParentFile(), pkgName);
-                File obbSource = (siblingFolder.exists() && siblingFolder.isDirectory()) ? siblingFolder : null;
-                
-                // If not found as sibling, do deep recursive search (but exclude the extractRoot itself)
-                if (obbSource == null) {
-                    obbSource = findObbFolderRecursive(extractRoot, pkgName, extractRoot);
+                // 1. Find OBB Source (STRICT SIBLING ONLY per user request)
+                callback.onStatus("Auto-Sideload: Looking for OBB sibling...");
+                Log.d(TAG, "Search folder: " + folderName + " in " + mainApk.getParent());
+
+                File obbSource = null;
+                File parentDir = mainApk.getParentFile();
+                File[] siblings = parentDir.listFiles();
+                if (siblings != null) {
+                    for (File s : siblings) {
+                        if (s.isDirectory() && s.getName().equalsIgnoreCase(folderName)) {
+                            obbSource = s;
+                            Log.d(TAG, "OBB Sibling found: " + s.getAbsolutePath());
+                            break;
+                        }
+                    }
                 }
                 
                 String obbSourcePath = (obbSource != null) ? obbSource.getAbsolutePath() : null;
-                Log.d(TAG, "Final OBB Source Path: " + obbSourcePath);
 
-                // 2. Start Session Installation (Post-install OBB logic is in InstallReceiver)
+                // 2. Start Session Installation
                 callback.onStatus("Auto-Sideload: Installing APK...");
-                installApkSession(context, mainApk, pkgName, obbSourcePath, callback);
+                installApkSession(context, mainApk, folderName, obbSourcePath, callback);
                 
-                callback.onDone(false, "Staged"); // MainActivity will wait for the Broadcast
+                callback.onDone(false, "Staged");
             } catch (Exception e) {
                 Log.e(TAG, "AutoInstall failed", e);
                 callback.onError(e.getMessage());
@@ -80,27 +84,6 @@ public class AutoInstaller {
                 apks.add(f);
             }
         }
-    }
-
-    private static File findObbFolderRecursive(File dir, String pkgName, File rootToIgnore) {
-        if (dir == null || !dir.isDirectory()) return null;
-        
-        // Exact match check (Skip if it's the top level extraction root)
-        if (!dir.equals(rootToIgnore) && dir.getName().equalsIgnoreCase(pkgName)) return dir;
-
-        File[] files = dir.listFiles();
-        if (files == null) return null;
-        
-        for (File f : files) {
-            if (f.isDirectory()) {
-                // Check if this child is the target
-                if (f.getName().equalsIgnoreCase(pkgName)) return f;
-                // Otherwise recurse
-                File found = findObbFolderRecursive(f, pkgName, rootToIgnore);
-                if (found != null) return found;
-            }
-        }
-        return null;
     }
 
     private static void installApkSession(Context context, File apkFile, String pkgName, String obbSourcePath, InstallCallback callback) throws Exception {

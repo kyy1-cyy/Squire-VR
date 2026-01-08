@@ -108,18 +108,20 @@ public class MainActivity extends AppCompatActivity {
                                     AutoInstaller.processExtraction(MainActivity.this, new File(finalSavePath), new AutoInstaller.InstallCallback() {
                                         @Override
                                         public void onStatus(String msg) {
-                                            runOnUiThread(() -> currentDialog.setMessage(msg));
+                                            runOnUiThread(() -> {
+                                                currentDialog.setMessage(msg);
+                                                if (msg.contains("Check Quest Prompt")) {
+                                                    currentDialog.setIndeterminate(true);
+                                                }
+                                            });
                                         }
 
                                         @Override
                                         public void onDone() {
                                             runOnUiThread(() -> {
                                                 currentDialog.dismiss();
-                                                new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
-                                                    .setTitle("Sideload Complete")
-                                                    .setMessage("Game installed and OBB moved successfully!\n\n(Install prompt may take a second to appear)")
-                                                    .setPositiveButton("Awesome", null)
-                                                    .show();
+                                                // We don't show a second dialog here because the System Install dialog is likely visible
+                                                Toast.makeText(MainActivity.this, "Sideload sequence completed.", Toast.LENGTH_LONG).show();
                                             });
                                         }
 

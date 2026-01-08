@@ -1,0 +1,50 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="#2A2A2A"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/game_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:gravity="top|start" />
+
+        <TextView
+            android:id="@+id/game_meta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#AAAAAA"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/download_btn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:text="Download"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#007AFF"
+            android:textAllCaps="false"
+            android:insetTop="0dp"
+            android:insetBottom="0dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

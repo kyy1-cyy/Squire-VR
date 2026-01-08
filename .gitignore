@@ -1,0 +1,26 @@
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Gradle
+.gradle/
+build/
+app/build/
+
+# Local configuration (VERY IMPORTANT TO IGNORE)
+local.properties
+
+# Log files
+*.log
+
+# System files
+.DS_Store
+
+# Native build artifacts
+.externalNativeBuild
+.cxx
+
+# APKs and other generated files
+*.apk
+/temp_archives/

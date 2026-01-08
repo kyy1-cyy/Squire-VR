@@ -35,28 +35,42 @@ public class AutoInstaller {
                     return;
                 }
 
-                for (File apk : apks) {
-                    String apkName = apk.getName();
-                    if (!apkName.endsWith(".apk")) continue;
-                    
-                    String pkgName = apkName.substring(0, apkName.length() - 4);
-                    
-                    // 1. Session Installation (Background-ish)
-                    callback.onStatus("Step 1/2: Installing APK...");
-                    installApkSession(context, apk, pkgName, callback);
-
-                    // 2. Move OBB Folder
-                    File obbSource = findObbFolder(apk.getParentFile(), pkgName);
-                    if (obbSource != null) {
-                        callback.onStatus("Step 2/2: Moving OBB folder...");
-                        File obbDest = new File("/sdcard/Android/obb/" + pkgName);
-                        if (!obbDest.exists()) obbDest.mkdirs();
-                        
-                        if (!moveFolder(obbSource, obbDest)) {
-                            Log.e(TAG, "Failed to move OBB folder: " + pkgName);
-                        }
-                    }
+                // Pick the largest APK (likely the main game)
+                File mainApk = apks.get(0);
+                for (File f : apks) {
+                    if (f.length() > mainApk.length()) mainApk = f;
                 }
+                
+                Log.d(TAG, "Selected Main APK: " + mainApk.getAbsolutePath() + " (" + mainApk.length() + " bytes)");
+
+                String apkName = mainApk.getName();
+                String pkgName = apkName.endsWith(".apk") ? apkName.substring(0, apkName.length() - 4) : apkName;
+                
+                // 1. Move OBB Folder (Search same dir or parent)
+                callback.onStatus("Step 1/2: Preparing OBB folder...");
+                File obbSource = findObbFolder(mainApk.getParentFile(), pkgName);
+                if (obbSource == null) {
+                    obbSource = findObbFolder(extractRoot, pkgName);
+                }
+
+                if (obbSource != null && obbSource.exists()) {
+                    Log.d(TAG, "Found OBB Source: " + obbSource.getAbsolutePath());
+                    File obbDestRoot = new File("/sdcard/Android/obb/");
+                    if (!obbDestRoot.exists()) obbDestRoot.mkdirs();
+                    File finalObbDest = new File(obbDestRoot, pkgName);
+                    
+                    if (!moveFolder(obbSource, finalObbDest)) {
+                        Log.e(TAG, "Failed to move OBB folder: " + pkgName);
+                    } else {
+                        Log.d(TAG, "OBB move successful: " + pkgName);
+                    }
+                } else {
+                    Log.w(TAG, "No OBB folder found matching: " + pkgName);
+                }
+
+                // 2. Session Installation (Background-ish)
+                callback.onStatus("Step 2/2: Installing APK...");
+                installApkSession(context, mainApk, pkgName, callback);
                 
                 callback.onDone();
 
@@ -93,6 +107,11 @@ public class AutoInstaller {
     }
 
     private static void installApkSession(Context context, File apkFile, String pkgName, InstallCallback callback) throws Exception {
+        Log.d(TAG, "Starting Session Install for: " + apkFile.getAbsolutePath() + " (Size: " + apkFile.length() + ")");
+        if (apkFile.length() <= 0) {
+            throw new Exception("APK file is empty: " + apkFile.getName());
+        }
+
         PackageInstaller packageInstaller = context.getPackageManager().getPackageInstaller();
         PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL);
         params.setAppPackageName(pkgName);
@@ -112,21 +131,26 @@ public class AutoInstaller {
                 out.write(buffer, 0, n);
                 totalRead += n;
                 int progress = (int) ((totalRead * 100) / fileSize);
+                if (progress % 10 == 0) { // Log every 10%
+                    Log.d(TAG, "Streaming: " + progress + "% (" + totalRead + " bytes)");
+                }
                 callback.onStatus("Streaming APK: " + progress + "%");
             }
             session.fsync(out);
+            Log.d(TAG, "Streaming complete. Total written: " + totalRead);
         }
 
-        // Trigger the system prompt
-        Intent intent = new Intent(context, MainActivity.class); // MainActivity handles result
+        // Use Broadcast instead of Activity to avoid restart
+        Intent intent = new Intent(context, InstallReceiver.class); 
         intent.setAction("com.squire.vr.INSTALL_COMPLETE");
         
-        PendingIntent pendingIntent = PendingIntent.getActivity(
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
             context, sessionId, intent, 
             PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
         );
 
         callback.onStatus("Finalizing... Check Quest Prompt");
+        Log.d(TAG, "Committing session: " + sessionId);
         session.commit(pendingIntent.getIntentSender());
     }
 

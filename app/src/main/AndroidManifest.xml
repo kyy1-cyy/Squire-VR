@@ -39,6 +39,14 @@
         <service
             android:name=".StreamingService"
             android:exported="false" />
+
+        <receiver
+            android:name=".InstallReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.squire.vr.INSTALL_COMPLETE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

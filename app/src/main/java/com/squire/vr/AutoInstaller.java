@@ -68,12 +68,11 @@ public class AutoInstaller {
                     Log.w(TAG, "No OBB folder found matching: " + pkgName);
                 }
 
-                // 2. Session Installation (Background-ish)
-                callback.onStatus("Step 2/2: Installing APK...");
-                installApkSession(context, mainApk, pkgName, callback);
+                // 2. Intent Installation (Fast & Simple)
+                callback.onStatus("Step 2/2: Opening Installer...");
+                installApkIntent(context, mainApk);
                 
                 callback.onDone();
-
             } catch (Exception e) {
                 Log.e(TAG, "AutoInstall failed", e);
                 callback.onError(e.getMessage());
@@ -106,52 +105,18 @@ public class AutoInstaller {
         return null;
     }
 
-    private static void installApkSession(Context context, File apkFile, String pkgName, InstallCallback callback) throws Exception {
-        Log.d(TAG, "Starting Session Install for: " + apkFile.getAbsolutePath() + " (Size: " + apkFile.length() + ")");
-        if (apkFile.length() <= 0) {
-            throw new Exception("APK file is empty: " + apkFile.getName());
+    private static void installApkIntent(Context context, File apkFile) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri apkUri;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            apkUri = androidx.core.content.FileProvider.getUriForFile(context, context.getPackageName() + ".provider", apkFile);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            apkUri = Uri.fromFile(apkFile);
         }
-
-        PackageInstaller packageInstaller = context.getPackageManager().getPackageInstaller();
-        PackageInstaller.SessionParams params = new PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL);
-        params.setAppPackageName(pkgName);
-
-        int sessionId = packageInstaller.createSession(params);
-        PackageInstaller.Session session = packageInstaller.openSession(sessionId);
-
-        try (InputStream in = new FileInputStream(apkFile);
-             OutputStream out = session.openWrite("package", 0, apkFile.length())) {
-            
-            byte[] buffer = new byte[1024 * 1024]; // 1MB buffer
-            int n;
-            long totalRead = 0;
-            long fileSize = apkFile.length();
-            
-            while ((n = in.read(buffer)) != -1) {
-                out.write(buffer, 0, n);
-                totalRead += n;
-                int progress = (int) ((totalRead * 100) / fileSize);
-                if (progress % 10 == 0) { // Log every 10%
-                    Log.d(TAG, "Streaming: " + progress + "% (" + totalRead + " bytes)");
-                }
-                callback.onStatus("Streaming APK: " + progress + "%");
-            }
-            session.fsync(out);
-            Log.d(TAG, "Streaming complete. Total written: " + totalRead);
-        }
-
-        // Use Broadcast instead of Activity to avoid restart
-        Intent intent = new Intent(context, InstallReceiver.class); 
-        intent.setAction("com.squire.vr.INSTALL_COMPLETE");
-        
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-            context, sessionId, intent, 
-            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
-        );
-
-        callback.onStatus("Finalizing... Check Quest Prompt");
-        Log.d(TAG, "Committing session: " + sessionId);
-        session.commit(pendingIntent.getIntentSender());
+        intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     private static boolean moveFolder(File source, File dest) {

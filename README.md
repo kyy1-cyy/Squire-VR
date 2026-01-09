@@ -1,4 +1,4 @@
-# Squire VR 🛡️
+# Squire VR 🛡️ Quest of Rookie
 
 A simple, standalone rookie game downloader for Meta Quest. No PC or phone required.
 
@@ -19,4 +19,4 @@ Squire VR is a native Android app that lets you browse and download games direct
 4. Find a game, hit download.
 
 ### Credits And Inspiration 
-Huge thanks to the VRP team for all this and keeping everything running for the community This tool has been heavily inspired on your work.
+Huge thanks to the VRP team for all this and keeping everything running for the community This tool has been heavily inspired on your work. Also thanks to [Rookie on Quest](https://github.com/LeGeRyChEeSe/rookie-on-quest) i intially went into this project without knowing to much but having another project already made was alot of help so much appreciated to them.

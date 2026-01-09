@@ -6,7 +6,7 @@ A simple, standalone game downloader for Meta Quest. No PC or phone required.
 Squire VR is a native Android app that lets you browse and download games directly from the VRP Games right on your headset. It’s basically a lightweight version of Rookie Sideloader that lives on your Quest without needing a pc.
 
 ### Features
-- **Rookie Logic**: Has all the games and logic as the apps you already know.
+- **Data base**: Has a large comprehensive database of games you can browse and download
 - **Storage Check**: Automatically warns you if you don't have enough space before you start a download.
 
 **More coming soon**

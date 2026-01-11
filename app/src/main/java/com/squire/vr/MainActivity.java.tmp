@@ -1,0 +1,190 @@
+package com.squire.vr;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import android.content.SharedPreferences;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import android.util.Log;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import java.util.concurrent.TimeUnit;
+import android.content.pm.PackageManager;
+import android.widget.Button;
+import android.widget.ImageView;
+
+
+public class MainActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private GameAdapter adapter;
+    private ProgressBar loader;
+    private TextView statusText;
+    private SwitchCompat autoSideloadSwitch;
+    private Button tabAll, tabInstalled, tabUpdates;
+    private File thumbnailsDir;
+    private View bgStatusBar;
+    private TextView bgStatusText;
+    private Button bgStatusViewBtn;
+    private java.util.Queue<Game> downloadQueue = new java.util.LinkedList<>();
+    private Game currentDownloadingGame = null;
+    private android.app.ProgressDialog currentDialog;
+
+    private boolean showInstalledOnly = false;
+    private boolean showUpdatesOnly = false;
+    private String currentQuery = "";
+    private SharedPreferences prefs;
+    private BroadcastReceiver installResultReceiver;
+    private OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(15, TimeUnit.SECONDS)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
+            .build();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.game_list);
+        loader = findViewById(R.id.loader);
+        statusText = findViewById(R.id.status_text);
+        autoSideloadSwitch = findViewById(R.id.auto_sideload_switch);
+        tabAll = findViewById(R.id.tab_all);
+        tabInstalled = findViewById(R.id.tab_installed);
+        tabUpdates = findViewById(R.id.tab_updates);
+
+        tabAll.setOnClickListener(v -> {
+            showInstalledOnly = false;
+            showUpdatesOnly = false;
+            updateTabUI();
+            filterGames(currentQuery);
+        });
+
+        tabInstalled.setOnClickListener(v -> {
+            showInstalledOnly = true;
+            showUpdatesOnly = false;
+            updateTabUI();
+            filterGames(currentQuery);
+        });
+        
+        tabUpdates.setOnClickListener(v -> {
+            showInstalledOnly = false;
+            showUpdatesOnly = true;
+            updateTabUI();
+            filterGames(currentQuery);
+        });
+        
+        // Initial state
+        updateTabUI();
+        
+        prefs = getSharedPreferences("squire_prefs", MODE_PRIVATE);
+        autoSideloadSwitch.setChecked(prefs.getBoolean("auto_sideload", true));
+        autoSideloadSwitch.setOnCheckedChangeListener((btn, checked) -> {
+            prefs.edit().putBoolean("auto_sideload", checked).apply();
+        });
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Listen for final install results (v3.4)
+        installResultReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if (InstallReceiver.ACTION_INSTALL_RESULT.equals(action)) {
+                    if (currentDialog != null && currentDialog.isShowing()) {
+                        currentDialog.dismiss();
+                    }
+
+                    boolean success = intent.getBooleanExtra("success", false);
+                    boolean obbMoved = intent.getBooleanExtra("obbMoved", false);
+                    String obbPath = intent.getStringExtra("obbPath");
+                    String pkgName = intent.getStringExtra("pkgName");
+                    
+                    StringBuilder summary = new StringBuilder();
+                    if (success) {
+                        summary.append("✅ APK Installed: ").append(pkgName).append("\n\n");
+                        if (obbMoved) {
+                            summary.append("✅ OBB Moved to:\n").append(obbPath);
+                        } else {
+                            summary.append("⚠️ OBB: Not Found or skipped.");
+                        }
+                    } else {
+                        summary.append("❌ Installation Failed or Aborted.");
+                    }
+
+                    new androidx.appcompat.app.AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Sideload Summary")
+                        .setMessage(summary.toString())
+                        .setPositiveButton("Awesome", null)
+                        .show();
+                } else if (InstallReceiver.ACTION_INSTALL_STATUS.equals(action)) {
+                    String status = intent.getStringExtra("status");
+                    if (currentDialog != null && currentDialog.isShowing()) {
+                        currentDialog.setMessage(status);
+                    }
+                }
+            }
+        };
+        bgStatusBar = findViewById(R.id.bg_status_bar);
+        bgStatusText = findViewById(R.id.bg_status_text);
+        bgStatusViewBtn = findViewById(R.id.bg_status_view_btn);
+        
+        bgStatusViewBtn.setOnClickListener(v -> {
+            if (currentDialog != null) {
+                currentDialog.show();
+                bgStatusBar.setVisibility(View.GONE);
+            } else if (currentDownloadingGame != null) {
+                // Recreate if lost
+                showProgressDialog(currentDownloadingGame.gameName);
+                bgStatusBar.setVisibility(View.GONE);
+            }
+        });
+
+        android.content.IntentFilter filter = new android.content.IntentFilter();
+        filter.addAction(InstallReceiver.ACTION_INSTALL_RESULT);
+        filter.addAction(InstallReceiver.ACTION_INSTALL_STATUS);
+        registerReceiver(installResultReceiver, filter, Context.RECEIVER_EXPORTED);
+
+        startAppFlow();
+    }
+
+    private void startAppFlow() {
+        if (checkAndRequestPermissions()) {
+            new Thread(() -> {
+                loadCache(); // Load instant view
+                verifyBinaries();
+                runOnUiThread(this::fetchGames);
+            }).start();
+        }
+    }
+
+    private android.content.BroadcastReceiver downloadReceiver;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Register receiver for download updates
+        if (downloadReceiver == null) {
+            downloadReceiver = new android.content.BroadcastReceiver() {
+                @Override

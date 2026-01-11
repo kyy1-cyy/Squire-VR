@@ -1,63 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="32dp"
     android:background="#121212">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/status_text"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:text="Ready" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical">
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/auto_sideload_switch"
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Library" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/auto_sideload_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Auto-Install"
+                android:textColor="#BBBBBB"
+                android:checked="true"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search games..."
+            android:background="@drawable/search_bg"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/tab_all"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="All Games"
+                android:backgroundTint="#007AFF"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:layout_marginEnd="8dp"
+                app:cornerRadius="18dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+
+            <Button
+                android:id="@+id/tab_installed"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Installed"
+                android:backgroundTint="#333333"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:layout_marginEnd="8dp"
+                app:cornerRadius="18dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Sort"
+                android:backgroundTint="#333333"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                app:cornerRadius="18dp"
+                app:icon="@android:drawable/ic_menu_sort_by_size"
+                app:iconTint="#FFFFFF"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/game_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"
+            android:background="#1E1E1E"
+            android:padding="8dp"
+            android:clipToPadding="false" />
+
+        <LinearLayout
+            android:id="@+id/bg_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#007AFF"
+            android:padding="8dp"
+            android:visibility="gone"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/bg_status_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:text="Downloading Layer: 45%" />
+            <Button
+                android:id="@+id/bg_status_view_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="View"
+                android:textSize="10sp"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="#007AFF"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Auto-Sideload"
-            android:textColor="#FFFFFF"
-            android:checked="true"
-            android:padding="8dp" />
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
     </LinearLayout>
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:iconifiedByDefault="false"
-        app:queryHint="Search games..."
-        android:background="#2C2C2C"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/game_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scrollbars="vertical"
-        android:background="#1E1E1E"
-        android:padding="8dp"
-        android:clipToPadding="false" />
-        
-    <ProgressBar
-        android:id="@+id/loader"
+    <TextView
+        android:id="@+id/queue_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="100dp"
+        android:background="#CC000000"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:elevation="8dp" />
 
-</LinearLayout>
+</FrameLayout>

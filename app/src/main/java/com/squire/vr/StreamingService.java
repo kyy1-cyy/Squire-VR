@@ -209,15 +209,30 @@ public class StreamingService extends Service {
             }
         } finally {
             // 4. Cleanup Temp Archives
-            if (tempDir.exists() && !isStopped) {
-                File[] fileList = tempDir.listFiles();
-                if (fileList != null) {
-                    for (File f : fileList) f.delete();
-                }
-                tempDir.delete();
+            if (tempDir.exists()) {
+                deleteDir(tempDir);
                 debugLog.append("[CLEANUP] Temp folder removed\n");
             }
+            
+            // 5. Cleanup whole savePath if stopped or failed
+            if (isStopped) {
+                File gameDir = new File(savePath);
+                if (gameDir.exists()) {
+                    Log.d(TAG, "Cleanup: Deleting partial game folder due to stop: " + savePath);
+                    deleteDir(gameDir);
+                }
+            }
         }
+    }
+    
+    private void deleteDir(File file) {
+        if (file.isDirectory()) {
+            File[] children = file.listFiles();
+            if (children != null) {
+                for (File child : children) deleteDir(child);
+            }
+        }
+        file.delete();
     }
     
     private JSONArray listFiles(String hash, String baseUri) throws Exception {
@@ -252,6 +267,9 @@ public class StreamingService extends Service {
         intent.putExtra("total", total);
         intent.putExtra("statusMsg", statusMsg);
         intent.putExtra("phase", phase);
+        
+        int percent = total > 0 ? (int)((current * 100) / total) : 0;
+        intent.putExtra("progress_percent", percent);
         
         long elapsed = System.currentTimeMillis() - startTime;
         if (elapsed > 0) {

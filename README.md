@@ -16,27 +16,22 @@ Squire VR is a native Android app that lets you browse and download games direct
 - **AutoSideload**: if enabled, when game is done downloading it will begin installing the game ont your headset with a manual apk install then an auto obb folder mover.
 
 # ScreenShots: See the app in use
+Features:
+Full game card modern Layout
+Low Storage Detection error
+Search function for quick game finder
+download function to download the games and install them
 
 
-Main App
 
-<img width="697" height="432" alt="Screenshot 2026-01-28 at 2 24 50 am" src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" />
-
-
-Search Filter Function
-
-<img width="678" height="426" alt="Screenshot 2026-01-28 at 2 25 29 am" src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" />
-
-
-Storage low Error Handling 
-
-
-<img width="678" height="426" alt="Screenshot 2026-01-28 at 2 26 15 am" src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" />
-
-
-Downloading Function
-
-<img width="678" height="426" alt="Screenshot 2026-01-28 at 2 26 22 am" src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="48%" />
+  <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" width="48%" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" width="48%" />
+  <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" width="48%" />
+</p>
 
 ### Support & Community
 Join the Discord for updates and help: [Squire Vr Discord](https://discord.gg/9Cuva3VeFq)

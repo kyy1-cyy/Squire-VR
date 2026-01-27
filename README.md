@@ -15,6 +15,31 @@ Squire VR is a native Android app that lets you browse and download games direct
 - **Storage Check**: Automatically warns you if you don't have enough space before you start a download.
 - **AutoSideload**: if enabled, when game is done downloading it will begin installing the game ont your headset with a manual apk install then an auto obb folder mover.
 
+# ScreenShots
+see the app in use
+
+Main App
+
+<img width="697" height="432" alt="Screenshot 2026-01-28 at 2 24 50 am" src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" />
+
+
+Search Filter Function
+
+<img width="678" height="426" alt="Screenshot 2026-01-28 at 2 25 29 am" src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" />
+
+
+Storage low Error Handling 
+
+
+<img width="678" height="426" alt="Screenshot 2026-01-28 at 2 26 15 am" src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" />
+
+
+Downloading Function
+
+<img width="678" height="426" alt="Screenshot 2026-01-28 at 2 26 22 am" src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" />
+
+
+
 ### How to use
 1. Download the latest `.apk` from the **Releases** section.
 2. Sideload it to your Quest once 

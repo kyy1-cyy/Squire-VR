@@ -38,7 +38,8 @@ Downloading Function
 
 <img width="678" height="426" alt="Screenshot 2026-01-28 at 2 26 22 am" src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" />
 
-
+### Support & Community
+Join the Discord for updates and help: [Squire Vr Discord](https://discord.gg/9Cuva3VeFq)
 
 ### How to use
 1. Download the latest `.apk` from the **Releases** section.

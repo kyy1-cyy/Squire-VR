@@ -4,11 +4,10 @@
 
 <h1 align="center">Squire VR: Native VRPirates Client for Meta Quest 🛡️ </h1>
 
-<p align="center">
-  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=blue" alt="Downloads" />
-  </a>
-  <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=for-the-badge" alt="Views" />
+ <p align="center">
+  <a href="https://somsubhra.github.io/github-release-stats/?username=kyy1-cyy&repository=Squire-VR">
+    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=blue" alt="Downloads">
+  </a><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=for-the-badge" alt="Views">
 </p>
 
 A simple, standalone game downloader for Meta Quest for Rookie's Servers. No PC or phone required.

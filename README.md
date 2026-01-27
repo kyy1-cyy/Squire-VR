@@ -41,7 +41,7 @@ Join the Discord for updates and help: [Squire Vr Discord](https://discord.gg/9C
 
 ### How to use
 1. Download the latest `.apk` from the **Releases** section.
-> or just click his to download the latest .apk [Latest Apk](https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk)
+> or just click his to download the latest .apk | [Latest Apk](https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk)
 Is there a guide for getting this running on quest and using it?
 2. Sideload it to your Quest once 
 3. Open the app and give it "All Files Access" by scrolling down to the app and clicking allow (it needs this to save games to your `/sdcard/Download` folder).

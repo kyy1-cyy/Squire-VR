@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/75dee4df-4658-4c1f-9bcc-4be495192a62" width="300" />
-</p>
+<p align="center"><img width="300" height="300" alt="rounded-corners" src="https://github.com/user-attachments/assets/93efc9b9-5cd3-442f-8e83-37d6a40f80ed" />
+
+  
 
 <h1 align="center">Squire VR: Native VRPirates Client for Meta Quest 🛡️ </h1>
 

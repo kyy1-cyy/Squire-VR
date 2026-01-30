@@ -17,9 +17,13 @@ Squire VR is a native Android app that lets you browse and download games direct
 
 ### Features
 - **No PC needed**: Just open the app on your Quest and start downloading.
+- **Updates Tab**: Native version checking logic. Compares your installed games to the mirror and shows you exactly what needs an update.
+- **SQL Database**: Replaced old .txt caching with a high-speed SQL database for faster browsing and zero corruption.
+- **Smart Download Engine**: Built-in "self-healing" logic to auto-calculate hashes and fix "Error: null" issues.
 - **Rookie Logic**: Has all the games and logic as the apps you already know.
 - **Storage Check**: Automatically warns you if you don't have enough space before you start a download.
-- **AutoSideload**: if enabled, when game is done downloading it will begin installing the game ont your headset with a manual apk install then an auto obb folder mover.
+- **AutoSideload**: If enabled, when a game is done downloading it will begin installing the game onto your headset with a manual apk install then an auto obb folder mover.
+- **"Downloaded" Status**: Installed games are clearly marked in the UI to prevent duplicate downloads.
 
 # ScreenShots: See the app in use
 
@@ -28,10 +32,6 @@ Full game card modern Layout,
 Low Storage Detection error,
 Search function for quick game finder,
 download function to download the games and install them
-
-
-
-
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="48%" />

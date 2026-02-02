@@ -26,6 +26,9 @@ Squire VR is a native Android app that lets you browse and download games direct
 - **AutoSideload**: If enabled, when a game is done downloading it will begin installing the game onto your headset with a manual apk install then an auto obb folder mover.
 - **"Downloaded" Status**: Installed games are clearly marked in the UI to prevent duplicate downloads.
 
+> [!TIP]
+> Wait for the local Cache progress bar o finish before closing the app
+
 # ScreenShots: See the app in use
 
 Features:

@@ -41,7 +41,7 @@ Standalone tool to browse, download, and manage games from the Rookie server for
 
 ## Getting Started
 1. Enable “Install unknown apps” and grant file access on your Quest
-2. Build or install the APK
+2. Build or install the APK | [Latest Release](https://github.com/kyy1-cyy/Squire-VR/releases/latest)
 3. Launch Squire VR and wait while the catalog config loads
 4. Browse, download, and manage games
 
@@ -50,15 +50,9 @@ Standalone tool to browse, download, and manage games from the Rookie server for
 - Each game entry carries the base URI/password for downloading and streaming
 - Uninstall uses a resilient multi-path flow and updates UI instantly
 
-## Release Notes (v2.2.1)
-- 🟢 Installed Label on game cards
-- 🗑️ Uninstall Bin with instant refresh (Installed tab updates live)
-- 🗂️ Storage page for easy space view
-- 🔥 Minor popularity fixes and display consistency
-- 🧹 Repo hygiene with improved .gitignore and removed unused images
 
 ## HUGE THANKS
-Huge thanks to the vrpirates team for keeping the servers and app running!
+❤️ Huge thanks to the vrpirates team for keeping the servers and app running!
 
 ## License
 For personal use.

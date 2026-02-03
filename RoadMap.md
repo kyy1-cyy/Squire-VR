@@ -18,7 +18,7 @@ This document tracks the architectural evolution of **Squire VR**, an independen
 | **UI State** | Managed button states (Grey-pill) to prevent redundant downloads. |
 | **In App Updates** | Updates now happen in the app for a faster and better experence |
 | **Search/Indexing** | High-performance `SearchView` with `Comparator` logic for Date/Size sorting. |
-| **Resume/Pause** | Have added resume and pause to downloads. also added crash resume allowing for resuming downloads even if the app has crashed. |
+| **Resume/Pause** | Have added resume and pause to downloads. |
 ---
 
 ## 🛠️ Development Pipeline

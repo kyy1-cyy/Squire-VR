@@ -14,7 +14,8 @@
 >[!IMPORTANT]
 Views badge has been reset so please do not take that one as the real life view.
 
-**Jump to:** [Squire VR](#squire-vr) • [Features](#features) • [Getting Started](#getting-started) • [How It Works](#how-it-works) • [Release Notes (v2.2.1)](#release-notes-v221) • [HUGE THANKS](#huge-thanks) • [License](#license)
+**Jump to:** [Squire VR](#squire-vr) • [Features](#features) • [Getting Started](#getting-started) • 
+[How It Works](#how-it-works) • [Release Notes (v2.2.1)](#release-notes-v221) • [HUGE THANKS](#huge-thanks) • [License](#license)
 
 # Squire VR
 

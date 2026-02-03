@@ -22,13 +22,7 @@ Views badge has been reset so please do not take that one as the real life view.
 Standalone tool to browse, download, and manage games from the Rookie server for Meta Quest.
 
 ## Features
-- Installed label to identify installed games instantly
-- One-tap uninstall from the game card with live UI refresh
-- Storage page for quick space overview and management
-- Popularity display and sorting improvements
-- Clean, responsive UI with helpful status overlays
 
-### Component Map
 | File | Summary |
 |------|--------|
 | [AutoInstaller.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/AutoInstaller.java) | Extracts archives, coordinates APK install, and moves OBBs to /Android/obb. Emits status callbacks for progress UI and final results. |

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="220"
-    android:versionName="2.2.0"
+    android:versionCode="221"
+    android:versionName="2.2.1"
     android:compileSdkVersion="33"
     android:compileSdkVersionCodename="13"
     package="com.squire.vr"

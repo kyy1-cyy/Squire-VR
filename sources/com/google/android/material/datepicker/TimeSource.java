@@ -1,0 +1,40 @@
+package com.google.android.material.datepicker;
+
+import java.util.Calendar;
+import java.util.TimeZone;
+
+/* loaded from: classes.dex */
+class TimeSource {
+    private static final TimeSource SYSTEM_TIME_SOURCE = new TimeSource(null, null);
+    private final Long fixedTimeMs;
+    private final TimeZone fixedTimeZone;
+
+    private TimeSource(Long fixedTimeMs, TimeZone fixedTimeZone) {
+        this.fixedTimeMs = fixedTimeMs;
+        this.fixedTimeZone = fixedTimeZone;
+    }
+
+    static TimeSource system() {
+        return SYSTEM_TIME_SOURCE;
+    }
+
+    static TimeSource fixed(long epochMs, TimeZone timeZone) {
+        return new TimeSource(Long.valueOf(epochMs), timeZone);
+    }
+
+    static TimeSource fixed(long epochMs) {
+        return new TimeSource(Long.valueOf(epochMs), null);
+    }
+
+    Calendar now() {
+        return now(this.fixedTimeZone);
+    }
+
+    Calendar now(TimeZone timeZone) {
+        Calendar calendar = timeZone == null ? Calendar.getInstance() : Calendar.getInstance(timeZone);
+        if (this.fixedTimeMs != null) {
+            calendar.setTimeInMillis(this.fixedTimeMs.longValue());
+        }
+        return calendar;
+    }
+}

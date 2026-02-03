@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/popup_bg"
+    android:padding="8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="160dp">
+    <TextView
+        android:textColor="#ffffffff"
+        android:id="@+id/sort_default"
+        android:background="@drawable/item_bg"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Default"/>
+    <TextView
+        android:textColor="#ffffffff"
+        android:id="@+id/sort_date"
+        android:background="@drawable/item_bg"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last Updated"/>
+    <TextView
+        android:textColor="#ffffffff"
+        android:id="@+id/sort_size"
+        android:background="@drawable/item_bg"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Size"/>
+    <View
+        android:background="#33ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"/>
+    <TextView
+        android:textStyle="bold"
+        android:textColor="#ff4caf50"
+        android:id="@+id/sort_manager"
+        android:background="@drawable/item_bg"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Squire Manager"/>
+</LinearLayout>

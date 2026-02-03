@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/update_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Squire Update Available"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/update_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="v2.1.1"
+        android:textColor="#AAAAAA"
+        android:textSize="18sp"
+        android:layout_below="@id/update_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/update_version"
+        android:layout_above="@id/update_actions_container"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#222222"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/release_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#DDDDDD"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"/>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/update_actions_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download Update"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_pill_blue"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:paddingStart="48dp"
+            android:paddingEnd="48dp"
+            android:minHeight="56dp"/>
+
+        <!-- Dropdown Panel (Initially Hidden/Collapsed) -->
+        <LinearLayout
+            android:id="@+id/download_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1A1A1A"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            android:alpha="0">
+
+            <TextView
+                android:id="@+id/download_status_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Downloading..."
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <ProgressBar
+                android:id="@+id/download_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:max="100"
+                android:progressDrawable="@drawable/progress_bar_custom" 
+                android:progress="0"/>
+            <!-- Note: progress_bar_custom might not exist, will fallback to default if not found or use standard attribute -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/tv_progress_percent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0%"
+                    android:textColor="#AAAAAA"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:id="@+id/tv_speed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0.0 MB/s"
+                    android:textColor="#AAAAAA"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tv_eta"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--:--"
+                    android:textColor="#AAAAAA"
+                    android:gravity="end"/>
+            </LinearLayout>
+            
+            <TextView
+                android:id="@+id/tv_finished"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Download Finished"
+                android:textColor="#4CAF50"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

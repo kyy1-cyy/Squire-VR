@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Gradle/Build
+.gradle/
+build/
+/app/build/
+
+# Android
+local.properties
+*.keystore
+*.jks
+
+# Logs
+*.log
+
+# Generated/external bins
+tools/
+resources/lib/
+src/main/jniLibs/
+
+# Cache/artifacts
+captures/
+.externalNativeBuild/
+
+# APKs/outputs
+*.apk
+*.aab
+
+# Misc
+DebugProbesKt.bin

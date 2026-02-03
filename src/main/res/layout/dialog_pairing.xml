@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    app:cardBackgroundColor="#ff1e1e1e"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#ffffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pair Device"/>
+        <TextView
+            android:textSize="14sp"
+            android:textColor="#ffaaaaaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="1. Go to Settings &gt; System &gt; Developer options &gt; Wireless debugging.\102. Select &apos;Pair device with pairing code&apos;.\103. Enter the details below."/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="#ff888888"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="IP Address &amp; Port (e.g. 192.168.1.5:33445)"
+            app:boxBackgroundColor="#ff2c2c2c"
+            app:boxStrokeColor="#ff2196f3"
+            app:hintTextColor="#ff2196f3">
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="#ffffffff"
+                android:id="@+id/input_ip_port"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:textColorHint="#ff888888"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:hint="Pairing Code (6 digits)"
+            app:boxBackgroundColor="#ff2c2c2c"
+            app:boxStrokeColor="#ff2196f3"
+            app:hintTextColor="#ff2196f3">
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="#ffffffff"
+                android:id="@+id/input_pairing_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="6"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp">
+            <Button
+                android:textColor="#ffaaaaaa"
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+            <Button
+                android:textColor="#ffffffff"
+                android:id="@+id/btn_pair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pair"
+                android:backgroundTint="#ff2196f3"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

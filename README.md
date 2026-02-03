@@ -7,7 +7,10 @@
     <img alt="Downloads" src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?color=00C853&label=Downloads&logo=github">
   </a>
   <a href="https://hits.seeyoufarm.com">
-    <img alt="Views" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fkyy1-cyy%2FSquire-VR&count_bg=%2300C853&title_bg=%23333333&icon=github.svg&icon_color=%23FFFFFF&title=Views&edge_flat=false"/>
+    <img alt="Views" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fkyy1-cyy%2FSquire-VR%2F&count_bg=%2300C853&title_bg=%23333333&icon=github.svg&icon_color=%23FFFFFF&title=Views&edge_flat=false"/>
+  </a>
+  <a href="https://visitor-badge.laobi.icu/badge?page_id=kyy1-cyy.Squire-VR">
+    <img alt="Views (Fallback)" src="https://visitor-badge.laobi.icu/badge?page_id=kyy1-cyy.Squire-VR&title=Views&color=00C853"/>
   </a>
 </p>
 

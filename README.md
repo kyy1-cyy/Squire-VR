@@ -22,21 +22,22 @@ Views badge has been reset so please do not take that one as the real life view.
 Standalone tool to browse, download, and manage games from the Rookie server for Meta Quest.
 
 ## Features
-
-| File | Summary |
-|------|--------|
-| [AutoInstaller.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/AutoInstaller.java) | Extracts archives, coordinates APK install, and moves OBBs to /Android/obb. Emits status callbacks for progress UI and final results. |
-| [Config.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/Config.java) | Central constants: public config JSON URL, default mirror baseUri, default password, and broadcast action names. |
-| [DeviceStorageActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/DeviceStorageActivity.java) | Storage view page. Computes total/used/free space with StatFs and shows percent bar and GB breakdown; simple close action. |
-| [FadeOutRunnable.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/FadeOutRunnable.java) | Utility runnable to hide a view after animations, restoring alpha to 1.0 for reuse. |
-| [Game.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/Game.java) | Game data model: name, package, versions, popularity, sizes, install markers, and a stableId used by RecyclerView. |
-| [GameAdapter.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/GameAdapter.java) | Recycler adapter for cards and inline details. Handles favorites, uninstall button visibility, installed indicator, meta text (Installed vs Latest), and “Update/Resume/Download” button states with stable IDs to reduce flicker. |
-| [InstallReceiver.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/InstallReceiver.java) | Listens for package installer results. Triggers OBB move attempts, sends progress/status broadcasts, and reports success/fail with final obb paths. |
-| [MainActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/MainActivity.java) | Main UI controller. Fetches VRP config and meta, builds game list, filters tabs (All/Installed/Updates/Favorites), manages queue and progress overlays, handles uninstall flow with fallbacks, and refreshes the installed package cache. |
-| [SplashActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/SplashActivity.java) | Simple splash screen with fade‑in animation before transitioning to MainActivity. |
-| [SquireManagerActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/SquireManagerActivity.java) | Shizuku manager panel. Requests permissions, checks binder status, shows connection state, and provides a test to list /Android/obb via Shizuku. |
-| [StreamingService.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/StreamingService.java) | Background streaming/downloader. Lists remote files via rclone http, streams to local storage, and kicks off extraction using runtime baseUri/password. |
-| [VrpConfig.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/VrpConfig.java) | Runtime config holder populated from the public JSON: baseUri + password used throughout downloads/streaming. |
+### Feature Index
+| Feature | Description |
+|--------|-------------|
+| Auto Install | Toggle to auto‑install APKs when a download finishes, with OBB moved into /Android/obb automatically. |
+| Uninstall Bin | One‑tap uninstall directly from the game card with robust fallbacks; UI updates instantly without restarting. |
+| Installed Label | Clear “Installed” indicator on cards to identify installed titles at a glance. |
+| Updates View | Shows Installed vs Latest versions with size, making upgrade decisions quick and obvious. |
+| Storage Page | Dedicated storage screen showing used/total/free space with percentage and GB breakdown. |
+| Popularity | Displays popularity score and supports sorting; shows “N/A” when data isn’t available. |
+| Queue System | Clean, centered queue with background status; add multiple downloads safely and cancel pending items. |
+| Favorites | Star toggle to mark favorites and a tab to filter them quickly. |
+| Config Loading | Loads public VRP config at startup; baseUri/password populated and applied to downloads/streaming. |
+| Download/Streaming | Streams remote files via HTTP listing and writes locally, kicking off extraction and install flows. |
+| Splash Screen | Smooth fade‑in splash before launching the main UI. |
+| Manager Panel | Shizuku manager view to request permissions, check service state, and test privileged file access. |
+| Live Refresh | Package change listener refreshes tabs and counts instantly after install/uninstall. |
 
 ## Getting Started
 1. Enable “Install unknown apps” and grant file access on your Quest

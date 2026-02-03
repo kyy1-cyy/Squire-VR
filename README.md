@@ -1,0 +1,60 @@
+<p align="center"><img width="300" height="300" alt="rounded-corners" src="https://github.com/user-attachments/assets/55867b44-2d68-4c83-a6f0-5f3fba1acc1f" />
+
+
+<h1 align="center">Squire VR: Native VRPirates Client for Meta Quest 🛡️ </h1>
+
+ <p align="center">
+  <a href="https://somsubhra.github.io/github-release-stats/?username=kyy1-cyy&repository=Squire-VR">
+    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=blue" alt="Downloads">
+  </a><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=for-the-badge" alt="Views">
+</p>
+
+A simple, standalone game downloader for Meta Quest for Rookie's Servers. No PC or phone required.
+
+### What is this?
+Squire VR is a native Android app that lets you browse and download games directly from the VRP Games right on your headset. It’s basically a lightweight version of Rookie Sideloader that lives on your Quest.
+
+### Features
+- **No PC needed**: Just open the app on your Quest and start downloading.
+- **Resume**: You can pause the download and resume at any time. also if any crashes or quits happen for the app it saves your progress so no need to restart.
+- **Updates Tab**: Native version checking logic. Compares your installed games to the mirror and shows you exactly what needs an update.
+- **SQL Database**: Replaced old .txt caching with a high-speed SQL database for faster browsing and zero corruption.
+- **Smart Download Engine**: Built-in "self-healing" logic to auto-calculate hashes and fix "Error: null" issues.
+- **Rookie Logic**: Has all the games and logic as the apps you already know.
+- **Storage Check**: Automatically warns you if you don't have enough space before you start a download.
+- **AutoSideload**: If enabled, when a game is done downloading it will begin installing the game onto your headset with a manual apk install then an auto obb folder mover.
+- **"Downloaded" Status**: Installed games are clearly marked in the UI to prevent duplicate downloads.
+
+> [!TIP]
+> Wait for the local Cache progress bar to finish before closing the app
+
+# ScreenShots: See the app in use
+
+Features:
+Full game card modern Layout,
+Low Storage Detection error,
+Search function for quick game finder,
+download function to download the games and install them
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="48%" />
+  <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" width="48%" />
+</p>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" width="48%" />
+  <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" width="48%" />
+</p>
+
+### Support & Community
+Join the Discord for updates and help: [Squire Vr Discord](https://discord.gg/9Cuva3VeFq)
+
+### How to use
+1. Download the latest `.apk` from the **Releases** section.
+> or just click this to download the latest .apk | [Latest Apk](https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk)
+
+2. Sideload it to your Quest once 
+3. Open the app and give it "All Files Access" by scrolling down to the app and clicking allow (it needs this to save games to your `/sdcard/Download` folder).
+4. Find a game, hit download.
+
+### Credits
+Huge thanks to the VRP team for all this and keeping everything running for the community. This project would be nothing without them and if asked to remove this app i will do so.

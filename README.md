@@ -21,8 +21,7 @@ Views badge has been reset so please do not take that one as the real life view.
 
 Standalone tool to browse, download, and manage games from the Rookie server for Meta Quest.
 
-## Features
-### Feature Index
+# Feature Index
 | Feature | Description |
 |--------|-------------|
 | Auto Install | Toggle to auto‑install APKs when a download finishes, with OBB moved into /Android/obb automatically. |

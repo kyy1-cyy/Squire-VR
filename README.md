@@ -28,6 +28,22 @@ Standalone tool to browse, download, and manage games from the Rookie server for
 - Popularity display and sorting improvements
 - Clean, responsive UI with helpful status overlays
 
+### Component Map
+| File | Summary |
+|------|--------|
+| [AutoInstaller.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/AutoInstaller.java) | Extracts archives, coordinates APK install, and moves OBBs to /Android/obb. Emits status callbacks for progress UI and final results. |
+| [Config.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/Config.java) | Central constants: public config JSON URL, default mirror baseUri, default password, and broadcast action names. |
+| [DeviceStorageActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/DeviceStorageActivity.java) | Storage view page. Computes total/used/free space with StatFs and shows percent bar and GB breakdown; simple close action. |
+| [FadeOutRunnable.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/FadeOutRunnable.java) | Utility runnable to hide a view after animations, restoring alpha to 1.0 for reuse. |
+| [Game.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/Game.java) | Game data model: name, package, versions, popularity, sizes, install markers, and a stableId used by RecyclerView. |
+| [GameAdapter.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/GameAdapter.java) | Recycler adapter for cards and inline details. Handles favorites, uninstall button visibility, installed indicator, meta text (Installed vs Latest), and “Update/Resume/Download” button states with stable IDs to reduce flicker. |
+| [InstallReceiver.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/InstallReceiver.java) | Listens for package installer results. Triggers OBB move attempts, sends progress/status broadcasts, and reports success/fail with final obb paths. |
+| [MainActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/MainActivity.java) | Main UI controller. Fetches VRP config and meta, builds game list, filters tabs (All/Installed/Updates/Favorites), manages queue and progress overlays, handles uninstall flow with fallbacks, and refreshes the installed package cache. |
+| [SplashActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/SplashActivity.java) | Simple splash screen with fade‑in animation before transitioning to MainActivity. |
+| [SquireManagerActivity.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/SquireManagerActivity.java) | Shizuku manager panel. Requests permissions, checks binder status, shows connection state, and provides a test to list /Android/obb via Shizuku. |
+| [StreamingService.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/StreamingService.java) | Background streaming/downloader. Lists remote files via rclone http, streams to local storage, and kicks off extraction using runtime baseUri/password. |
+| [VrpConfig.java](file:///Users/mac/Documents/trae_projects/pp/SquireVR_decompiled/src/main/java/com/squire/vr/VrpConfig.java) | Runtime config holder populated from the public JSON: baseUri + password used throughout downloads/streaming. |
+
 ## Getting Started
 1. Enable “Install unknown apps” and grant file access on your Quest
 2. Build or install the APK

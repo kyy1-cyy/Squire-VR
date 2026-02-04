@@ -89,29 +89,28 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_card, parent, false);
             return new GameViewHolder(view);
         }
-        FrameLayout frame = new FrameLayout(parent.getContext());
-        frame.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
-        frame.setPadding(16, 8, 16, 16);
+        android.widget.LinearLayout container = new android.widget.LinearLayout(parent.getContext());
+        container.setOrientation(android.widget.LinearLayout.VERTICAL);
+        container.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
+        container.setPadding(16, 8, 16, 16);
         TextView tvNotes = new TextView(parent.getContext());
         tvNotes.setId(android.R.id.text1);
         tvNotes.setTextColor(-2039584);
         tvNotes.setTextSize(14.0f);
         tvNotes.setBackgroundColor(-14342875);
         tvNotes.setPadding(32, 32, 32, 16);
-        frame.addView(tvNotes);
+        container.addView(tvNotes, new ViewGroup.LayoutParams(-1, -2));
         android.widget.ScrollView sv = new android.widget.ScrollView(parent.getContext());
-        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-1, (int) (parent.getResources().getDisplayMetrics().density * 120));
-        lp.topMargin = (int) (parent.getResources().getDisplayMetrics().density * 8);
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(-1, (int) (parent.getResources().getDisplayMetrics().density * 120));
         sv.setLayoutParams(lp);
-        sv.setPadding(0, (int) (parent.getResources().getDisplayMetrics().density * 8), 0, 0);
         TextView tvDesc = new TextView(parent.getContext());
         tvDesc.setId(android.R.id.text2);
         tvDesc.setTextColor(-1);
         tvDesc.setTextSize(13.0f);
         tvDesc.setPadding(24, 16, 24, 16);
-        sv.addView(tvDesc, new FrameLayout.LayoutParams(-1, -2));
-        frame.addView(sv);
-        return new DetailViewHolder(frame);
+        sv.addView(tvDesc, new ViewGroup.LayoutParams(-1, -2));
+        container.addView(sv);
+        return new DetailViewHolder(container);
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter

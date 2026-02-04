@@ -680,14 +680,15 @@ public class MainActivity extends AppCompatActivity {
 
     private String extractDescriptionFromJson(com.google.gson.JsonElement el) {
         if (el == null || el.isJsonNull()) return null;
+        java.util.List<String> keys = java.util.Arrays.asList("description","longDescription","long_description","value","text","body","content");
         if (el.isJsonObject()) {
             for (java.util.Map.Entry<String, com.google.gson.JsonElement> e : el.getAsJsonObject().entrySet()) {
                 String k = e.getKey();
                 com.google.gson.JsonElement v = e.getValue();
                 if (v != null && v.isJsonPrimitive() && v.getAsJsonPrimitive().isString()) {
-                    if ("description".equalsIgnoreCase(k) || "longDescription".equalsIgnoreCase(k) || "long_description".equalsIgnoreCase(k)) {
+                    if (keys.contains(k.toLowerCase())) {
                         String s = v.getAsString();
-                        if (s != null && !s.isEmpty()) return s;
+                        if (s != null && s.length() > 20) return s;
                     }
                 }
                 String nested = extractDescriptionFromJson(v);
@@ -698,8 +699,33 @@ public class MainActivity extends AppCompatActivity {
                 String nested = extractDescriptionFromJson(v);
                 if (nested != null && !nested.isEmpty()) return nested;
             }
+        } else if (el.isJsonPrimitive() && el.getAsJsonPrimitive().isString()) {
+            String s = el.getAsString();
+            if (s != null && s.length() > 120 && !s.contains("http")) return s;
         }
+        String longest = findLongestString(el);
+        if (longest != null && longest.length() > 120) return longest;
         return null;
+    }
+
+    private String findLongestString(com.google.gson.JsonElement el) {
+        if (el == null || el.isJsonNull()) return null;
+        String best = null;
+        if (el.isJsonPrimitive() && el.getAsJsonPrimitive().isString()) {
+            String s = el.getAsString();
+            if (s != null && !s.contains("http") && s.length() > 0) best = s;
+        } else if (el.isJsonObject()) {
+            for (java.util.Map.Entry<String, com.google.gson.JsonElement> e : el.getAsJsonObject().entrySet()) {
+                String cand = findLongestString(e.getValue());
+                if (cand != null && (best == null || cand.length() > best.length())) best = cand;
+            }
+        } else if (el.isJsonArray()) {
+            for (com.google.gson.JsonElement v : el.getAsJsonArray()) {
+                String cand = findLongestString(v);
+                if (cand != null && (best == null || cand.length() > best.length())) best = cand;
+            }
+        }
+        return best;
     }
 
     @Override

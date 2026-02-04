@@ -21,7 +21,7 @@ A simple standalone game downloader for Meta Quest using Rookie’s servers.
 No PC or phone required.
 
 <p align="left">
-  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk">
+  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
     <img src="https://img.shields.io/badge/Download-Latest%20APK-green?style=for-the-badge" alt="Download APK">
   </a>
 </p>

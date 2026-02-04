@@ -1,6 +1,6 @@
 <p align="center">
-  <img width="260" height="260" alt="Squire VR Logo" src="https://github.com/user-attachments/assets/55867b44-2d68-4c83-a6f0-5f3fba1acc1f" />
-</p>
+<img width="300" height="300" alt="squire_square-modified (1)" src="https://github.com/user-attachments/assets/67ff3320-f700-4d45-84cd-04fa8bc00398" />
+
 
 <h1 align="center">Squire VR 🛡️</h1>
 <p align="center">

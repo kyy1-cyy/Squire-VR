@@ -1,10 +1,16 @@
 <p align="center">
-  <img width="300" height="300" alt="Squire VR Logo" src="https://github.com/user-attachments/assets/55867b44-2d68-4c83-a6f0-5f3fba1acc1f" />
+  <img width="260" height="260" alt="Squire VR Logo" src="https://github.com/user-attachments/assets/55867b44-2d68-4c83-a6f0-5f3fba1acc1f" />
 </p>
 
 <h1 align="center">Squire VR 🛡️</h1>
 <p align="center">
   Native VRPirates client for Meta Quest
+</p>
+
+<p align="center">
+  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
+    <img src="https://img.shields.io/badge/Download-Latest%20APK-green?style=for-the-badge" alt="Download APK">
+  </a>
 </p>
 
 <p align="center">
@@ -17,50 +23,27 @@
 
 ---
 
-A simple standalone game downloader for Meta Quest using Rookie’s servers.  
+## Overview
+**Squire VR** is a native Android app that lets you browse and download games directly from the VRP Games mirror on your Meta Quest.  
 No PC or phone required.
 
-<p align="left">
-  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://img.shields.io/badge/Download-Latest%20APK-green?style=for-the-badge" alt="Download APK">
-  </a>
-</p>
-
----
-
-## What is Squire VR?
-Squire VR is a native Android app that lets you browse and download games directly from the VRP Games mirror on your headset.  
 Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 ---
 
-## Features
-- **No PC needed**  
-  Download games directly on your Quest.
+## Key Features
 
-- **Resume support**  
-  Pause and resume downloads anytime. Progress is saved even if the app closes.
-
-- **Updates tab**  
-  Automatically compares installed games with the mirror and shows available updates.
-
-- **SQL database**  
-  Replaces old `.txt` caching with a faster, more reliable database.
-
-- **Smart download engine**  
-  Self-healing logic to prevent common errors like `Error: null`.
-
-- **Rookie logic**  
-  Uses the same game lists and logic as the tools you already know.
-
-- **Storage check**  
-  Warns you if there isn’t enough space before downloading.
-
-- **AutoSideload**  
-  Automatically installs the APK and moves OBB files after download.
-
-- **Downloaded status**  
-  Installed games are clearly marked to prevent duplicates.
+| Feature | Description |
+|--------|-------------|
+| **No PC Needed** | Download games directly on your Quest. |
+| **Resume Support** | Pause and resume downloads anytime.  |
+| **Updates Tab** | Automatically compares installed games with the mirror and shows available updates. |
+| **SQL Database** | Faster, more reliable caching compared to old `.txt` files. |
+| **Smart Download Engine** | Self-healing logic to prevent errors like `Error: null`. |
+| **Rookie Logic** | Uses the same game lists and logic as familiar tools. |
+| **Storage Check** | Warns you if there isn’t enough space before downloading. |
+| **AutoSideload** | Installs the APK and moves OBB files automatically. |
+| **Downloaded Status** | Installed games are clearly marked to avoid duplicates. |
 
 > **Tip:**  
 > Wait for the local cache progress bar to finish before closing the app.
@@ -84,24 +67,30 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 ## Download & Setup
 
-1. Download the latest `.apk` from the **Releases** section  
-   or use this direct link:  
-   **[Download Latest APK](https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk)**
-
+1. Download the latest APK from the **Releases** page  
+   or use the direct link below.
+   <p align="left">
+  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk">
+    <img src="https://img.shields.io/badge/Download%20Latest%20APK-green?style=for-the-badge" alt="Download Latest APK">
+  </a>
+</p>
 2. Sideload it to your Quest (only required once).
 3. Open the app and grant **All Files Access**:
    - Scroll to the app in settings.
    - Enable the permission.
-4. Find a game and start downloading.
+4. Choose a game and start downloading.
+
+
 
 ---
 
 ## Support & Community
-Join the Discord for updates and help:  
+Join the Discord for updates, announcements, and help.
+
 **https://discord.gg/9Cuva3VeFq**
 
 ---
 
 ## Credits
 Huge thanks to the VRP team for maintaining the servers and tools.  
-This project depends on their work, and it will be removed if requested.
+This project depends on their work and will be removed if requested.

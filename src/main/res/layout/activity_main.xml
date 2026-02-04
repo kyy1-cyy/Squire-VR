@@ -294,7 +294,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:text="Squire VR v2.2.1"
+            android:text="Squire VR v2.3.0"
             android:textColor="#ff444444"
             android:textSize="14sp"
             android:textStyle="bold"

@@ -36,6 +36,9 @@ Low Storage Detection error,
 Search function for quick game finder,
 download function to download the games and install them
 
+>[!Note]
+>These images are from an earlier version. there will be ui/ui and feature changes in the actual app
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="48%" />
   <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" width="48%" />

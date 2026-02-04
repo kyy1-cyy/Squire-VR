@@ -1,0 +1,453 @@
+Enums
+
+Type of binary the headset supports
+Values
+Unknown
+Value: -1
+Unknown Binary typeAndroidBinary
+Value: 0
+Usually apks and obbsPCBinary
+Value: 1
+PC way to download games via manifest
+
+
+Group of headsets the application belongs to
+Values
+Unknown
+Value: -1
+Unknown groupQuest
+Value: 0
+Quest headsetsPCVR
+Value: 1
+PCVR headsets (e. g. Rift) and linkGo
+Value: 2
+Oculus GoGearVR
+Value: 3
+Gear VR
+
+
+Headset
+Values
+RIFT
+Value: 0
+RiftMONTEREY
+Value: 1
+Quest 1HOLLYWOOD
+Value: 2
+Quest 2GEARVR
+Value: 3
+Gear VRPACIFIC
+Value: 4
+GoLAGUNA
+Value: 5
+Rift SSEACLIFF
+Value: 6
+Quest ProEUREKA
+Value: 7
+Quest 3PANTHER
+Value: 8
+Quest 3SFUTURE_DEVICES
+Value: 9
+Future devices
+
+
+
+
+Types of data found on OculusDB
+Values
+AppImage
+Value: AppImage
+Represents an application imageParentApplication
+Value: ParentApplication
+Represents the parent applicationApplication
+Value: Application
+Represents an applicationVersion
+Value: Version
+Represents a version of the applicationIapItem
+Value: IapItem
+Represents an in-app purchase itemIapItemPack
+Value: IapItemPack
+Represents a pack of in-app purchase itemsObbBinary
+Value: ObbBinary
+Represents an OBB binary fileVersionAlias
+Value: VersionAlias
+Represents an alias for a versionPrice
+Value: Price
+Represents the price of an offerReleaseChannel
+Value: ReleaseChannel
+Represents a release channel of the applicationApplicationTranslation
+Value: ApplicationTranslation
+Represents the translation of an applicationApplicationGrouping
+Value: ApplicationGrouping
+Represents a grouping of applicationsParentApplicationGrouping
+Value: ParentApplicationGrouping
+Represents a grouping of parent applicationsAssetFile
+Value: AssetFile
+Represents an asset fileIapItemId
+Value: IapItemId
+Represents the ID of an in-app purchase itemAchievement
+Value: Achievement
+Represents an achievementAchievementTranslation
+Value: AchievementTranslation
+Represents the translation of an achievementOffer
+Value: Offer
+Represents an offerError
+Value: Error
+Represents an errorDifference
+Value: Difference
+Represents a differenceUnknown
+Value: Unknown
+Represents an unknown valueApplicationNull
+Value: ApplicationNull
+Represents a null application (which is not exposed in the api)
+
+
+Endpoints
+
+Gets all apps blocked on OculusDB
+Parameters
+Example Request
+GET /api/v2/blocked/blockedapps
+
+array
+:
+
+
+Queues an app to be scraped, needs authorization
+Parameters
+Example Request
+POST /api/v2/scraping/scrape
+
+object
+:
+{}
+
+
+Reports an missing app. OculusDB will queue it for scraping
+Parameters
+Example Request
+POST /api/v2/scraping/reportmissing
+
+object
+:
+{}
+
+
+Gets all applications with aliases
+Parameters
+Example Request
+GET /api/v2/aliases/applications
+
+array
+:
+
+
+Checks if the token you have has access to OculusDB in case it's been blocked
+Parameters
+Example Request
+POST /api/v2/emergency/checkaccess
+
+object
+:
+{}
+
+
+Uploads a QAVS report (logs) to OculusDB and gives back the log id
+Parameters
+Example Request
+POST /api/v2/qavs/createreport
+
+object
+:
+{}
+
+
+Gets an QAVS report by id
+Parameters
+id
+Id of the QAVS report
+ Required
+Example Request
+GET /api/v2/qavs/report/<id>
+
+null
+:
+null
+
+
+Reports a download for download counts
+Parameters
+Example Request
+POST /api/v2/analytics/reportdownload
+
+object
+:
+{}
+
+
+Parameters
+appid
+App you want statistics for
+ Requiredafter
+Only counts downloads after a date, ISOFormatted
+ Not Required
+Example Request
+GET /api/v2/analytics/applicationanalytics/<appid>
+
+object
+:
+{}
+
+
+Aggregates all apps from the database, expensive request (won't be rendered, contains list of all applications)
+Parameters
+Example Request
+GET /api/v2/allapps
+
+object
+:
+{}
+
+
+Gets an application by package name
+Parameters
+packagename
+The package name of the application
+ Required
+Example Request
+GET /api/v2/packagename/<packagename>
+
+object
+:
+{}
+
+
+Gets an object by its id
+Parameters
+id
+The id of the object
+ Required
+Example Request
+GET /api/v2/id/<id>
+
+object
+{62}
+
+
+Gets every object in the db that's related to the given object
+Parameters
+id
+The id of the object
+ Required
+Example Request
+GET /api/v2/connected/<id>
+
+object
+{5}
+
+
+Gets all versions of an app
+Parameters
+appid
+Id of the app you want versions for
+ Requiredonlydownloadable
+Whether to only return downloadable (public) versions
+ Not Required
+Example Request
+POST /api/v2/versions/<appid>?onlydownloadable=<onlydownloadable>
+
+object
+:
+{}
+
+
+Executes a query on the db with the given term. Depending on the configuration required parameters may change
+Parameters
+term
+The term to search for
+ Not Requiredtype
+The OculusDBType (see enums) of the objects you want to search for
+ Not Requiredskip
+The amount of objects you want to skip
+ Not Requiredlimit
+The amount of objects you want to get
+ Not Requiredgroups
+The headset groups (see enum) you want to search for. Comma seperated
+ Not Requiredappid
+The app id you want to search for. Relevant for things like versions
+ Not RequiredsupportedInAppLanguages
+The languages you want to filter for
+ Not RequireddifferenceNameTypes
+The Difference types (See enums) you want to search for
+ Not Required
+Example Request
+GET /api/v2/search?q=<term>&type=<type>&skip=<skip>&limit=<limit>&groups=<groups>&appid=<appid>&supportedInAppLanguages=<languages>&differenceNameTypes=<diffTypes>
+
+object
+{2}
+
+
+Gets all dlcs and dlc packs for an application
+Parameters
+appid
+The application id
+ Required
+Example Request
+GET /api/v2/dlcs/<appid>
+
+object
+:
+{}
+
+
+Gives you the price history of an item.
+Parameters
+id
+The id of the application, dlcs or dlcs pack you want to get the price history for.
+ Required
+Example Request
+GET /api/v2/difference/pricehistory/<id>
+
+object
+:
+{}
+
+
+Retrieves a difference by its id
+Parameters
+id
+The id of the difference to retreive
+ Required
+Example Request
+GET /api/v2/difference/id/<id>
+
+object
+:
+{}
+
+
+Gets the 200 most recent commits to the OculusDB GitHub repository
+Parameters
+Example Request
+GET /api/v2/commits
+
+array
+[100]
+
+
+Gets details about the database
+Parameters
+Example Request
+GET /api/v2/database/info
+
+object
+{2}
+
+
+Gives you a list of headsets with various properties OculusDB uses
+Parameters
+Example Request
+GET /api/v2/lists/headsets
+
+array
+[10]
+
+
+Gives you a list of difference types OculusDB uses
+Parameters
+Example Request
+GET /api/v2/lists/differencetypes
+
+array
+[4]
+
+
+Gives you a list of search categories OculusDB knows about
+Parameters
+Example Request
+GET /api/v2/lists/searchcategories
+
+array
+[4]
+
+
+Gives you a list of categories OculusDB knows about
+Parameters
+Example Request
+GET /api/v2/lists/categories
+
+array
+[6]
+
+
+Gives you a list of genres OculusDB knows about
+Parameters
+Example Request
+GET /api/v2/lists/genres
+
+array
+[35]
+
+
+Gets all webhooks, needs authorization
+Parameters
+Example Request
+GET /api/v2/webhooks/all
+
+object
+:
+{}
+
+
+Creates or updates an webhook, needs authorization
+Parameters
+Example Request
+POST /api/v2/webhooks/createorupdate
+
+object
+:
+{}
+
+
+Deletes an webhook, needs authorization
+Parameters
+Example Request
+DELETE /api/v2/webhooks/delete
+
+object
+:
+{}
+
+
+Deletes an app from the blocked list, needs authorization
+Parameters
+Example Request
+DELETE /api/v2/blocked/unblockapp
+
+object
+:
+{}
+
+
+Blocks an app, needs authorization
+Parameters
+Example Request
+POST /api/v2/blocked/blockapp
+
+object
+:
+{}
+
+
+Creates a scraping node, needs authorization
+Parameters
+id
+Id of the scraping node
+ Requiredname
+Name of the scraping node
+ Required
+Example Request
+POST /api/v2/scraping/createnode?name=<name>&id=<id>
+
+object
+

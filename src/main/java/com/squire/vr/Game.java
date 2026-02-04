@@ -22,6 +22,7 @@ class Game {
     double popularityScore; // Tracks download count/popularity (double for precision)
     boolean isFavorite; // Tracks if game is favorited
     long stableId; // Unique ID for RecyclerView
+    String oculusDescription;
 
     Game() {
     }

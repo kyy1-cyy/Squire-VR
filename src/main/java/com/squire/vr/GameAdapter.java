@@ -24,6 +24,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_GAME = 0;
     private List<Object> items;
     private OnGameClickListener listener;
+    private OnRequestDescriptionListener detailListener;
     private boolean showInstalledLabels;
     private boolean showUpdateLabels = false;
 
@@ -37,6 +38,10 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     
     public interface OnGameUninstallListener extends OnGameFavoriteListener {
         void onUninstallClick(Game game);
+    }
+    
+    public interface OnRequestDescriptionListener {
+        void onRequestDescription(Game game);
     }
 
     public static class DetailMarker {
@@ -61,6 +66,10 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.listener = listener;
         setHasStableIds(true); // Enable stable IDs for better performance and less flickering
     }
+    
+    public void setOnRequestDescriptionListener(OnRequestDescriptionListener l) {
+        this.detailListener = l;
+    }
 
     public void updateList(List list, boolean showInstalledLabels, boolean showUpdateLabels) {
         this.showInstalledLabels = showInstalledLabels;
@@ -83,13 +92,25 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         FrameLayout frame = new FrameLayout(parent.getContext());
         frame.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
         frame.setPadding(16, 8, 16, 16);
-        TextView tv = new TextView(parent.getContext());
-        tv.setId(android.R.id.text1);
-        tv.setTextColor(-2039584);
-        tv.setTextSize(14.0f);
-        tv.setBackgroundColor(-14342875);
-        tv.setPadding(32, 32, 32, 32);
-        frame.addView(tv);
+        TextView tvNotes = new TextView(parent.getContext());
+        tvNotes.setId(android.R.id.text1);
+        tvNotes.setTextColor(-2039584);
+        tvNotes.setTextSize(14.0f);
+        tvNotes.setBackgroundColor(-14342875);
+        tvNotes.setPadding(32, 32, 32, 16);
+        frame.addView(tvNotes);
+        android.widget.ScrollView sv = new android.widget.ScrollView(parent.getContext());
+        FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-1, (int) (parent.getResources().getDisplayMetrics().density * 120));
+        lp.topMargin = (int) (parent.getResources().getDisplayMetrics().density * 8);
+        sv.setLayoutParams(lp);
+        sv.setPadding(0, (int) (parent.getResources().getDisplayMetrics().density * 8), 0, 0);
+        TextView tvDesc = new TextView(parent.getContext());
+        tvDesc.setId(android.R.id.text2);
+        tvDesc.setTextColor(-1);
+        tvDesc.setTextSize(13.0f);
+        tvDesc.setPadding(24, 16, 24, 16);
+        sv.addView(tvDesc, new FrameLayout.LayoutParams(-1, -2));
+        frame.addView(sv);
         return new DetailViewHolder(frame);
     }
 
@@ -303,11 +324,17 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void bindDetail(DetailViewHolder holder, DetailMarker marker) {
-        TextView tv = (TextView) holder.itemView.findViewById(android.R.id.text1);
+        TextView tv1 = (TextView) holder.itemView.findViewById(android.R.id.text1);
         if (marker.game.noteContent != null && !marker.game.noteContent.isEmpty()) {
-            tv.setText("Release Notes:\n\n" + marker.game.noteContent);
+            tv1.setText("Release Notes:\n\n" + marker.game.noteContent);
         } else {
-            tv.setText("No release notes available.");
+            tv1.setText("No release notes available.");
+        }
+        TextView tv2 = (TextView) holder.itemView.findViewById(android.R.id.text2);
+        if (marker.game.oculusDescription != null && !marker.game.oculusDescription.isEmpty()) {
+            tv2.setText(marker.game.oculusDescription);
+        } else {
+            tv2.setText("No description found.");
         }
     }
 
@@ -340,6 +367,9 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 game.isExpanded = true;
                 this.items.add(position + 1, new DetailMarker(game));
                 notifyItemInserted(position + 1);
+                if (this.detailListener != null) {
+                    this.detailListener.onRequestDescription(game);
+                }
                 return;
             }
             game.isExpanded = false;

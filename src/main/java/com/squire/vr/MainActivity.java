@@ -578,6 +578,46 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         this.recyclerView.setAdapter(this.adapter);
+        this.adapter.setOnRequestDescriptionListener(new GameAdapter.OnRequestDescriptionListener() {
+            @Override
+            public void onRequestDescription(final Game game) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String desc = null;
+                        try {
+                            if (game.packageName != null && !game.packageName.isEmpty()) {
+                                Request req = new Request.Builder().url("https://oculusdb-rewrite.rui2015.me/api/v2/packagename/" + game.packageName).build();
+                                Response res = MainActivity.this.client.newCall(req).execute();
+                                if (res.isSuccessful()) {
+                                    String json = res.body().string();
+                                    com.google.gson.JsonElement el = com.google.gson.JsonParser.parseString(json);
+                                    desc = MainActivity.this.extractDescriptionFromJson(el);
+                                }
+                            }
+                            if ((desc == null || desc.isEmpty()) && game.releaseName != null && !game.releaseName.isEmpty()) {
+                                String q = java.net.URLEncoder.encode(game.releaseName, "UTF-8");
+                                Request req2 = new Request.Builder().url("https://oculusdb-rewrite.rui2015.me/api/v2/search?q=" + q + "&type=Application&limit=1").build();
+                                Response res2 = MainActivity.this.client.newCall(req2).execute();
+                                if (res2.isSuccessful()) {
+                                    String json2 = res2.body().string();
+                                    com.google.gson.JsonElement el2 = com.google.gson.JsonParser.parseString(json2);
+                                    desc = MainActivity.this.extractDescriptionFromJson(el2);
+                                }
+                            }
+                        } catch (Exception ignored) {}
+                        final String finalDesc = desc;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                game.oculusDescription = finalDesc;
+                                MainActivity.this.adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
     }
 
     public void onFavoriteToggled(Game game) {
@@ -636,6 +676,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private String extractDescriptionFromJson(com.google.gson.JsonElement el) {
+        if (el == null || el.isJsonNull()) return null;
+        if (el.isJsonObject()) {
+            for (java.util.Map.Entry<String, com.google.gson.JsonElement> e : el.getAsJsonObject().entrySet()) {
+                String k = e.getKey();
+                com.google.gson.JsonElement v = e.getValue();
+                if (v != null && v.isJsonPrimitive() && v.getAsJsonPrimitive().isString()) {
+                    if ("description".equalsIgnoreCase(k) || "longDescription".equalsIgnoreCase(k) || "long_description".equalsIgnoreCase(k)) {
+                        String s = v.getAsString();
+                        if (s != null && !s.isEmpty()) return s;
+                    }
+                }
+                String nested = extractDescriptionFromJson(v);
+                if (nested != null && !nested.isEmpty()) return nested;
+            }
+        } else if (el.isJsonArray()) {
+            for (com.google.gson.JsonElement v : el.getAsJsonArray()) {
+                String nested = extractDescriptionFromJson(v);
+                if (nested != null && !nested.isEmpty()) return nested;
+            }
+        }
+        return null;
     }
 
     @Override

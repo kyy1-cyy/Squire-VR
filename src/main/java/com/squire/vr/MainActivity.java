@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
     private Button tabInstalled;
     private Button tabUpdates;
     private Button tabFavorites;
+    private Button tabUncrackable;
     private Button btnStorageManager;
     private File thumbnailsDir;
     private int sortMode = 0;
@@ -123,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
     private StringBuilder sessionSideloadResults = new StringBuilder();
     private boolean showInstalledOnly = false;
     private boolean showFavoritesOnly = false;
+    private boolean showUncrackableOnly = false;
+    private Set<String> uncrackablePackages = new HashSet<>();
     private Set<String> favoriteGames = new HashSet<>();
     private String currentQuery = "";
     private Map<String, String> installedPackagesCache = new HashMap();
@@ -202,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         this.showInstalledOnly = true;
         this.showUpdatesOnly = true;
         this.showFavoritesOnly = false;
+        this.showUncrackableOnly = false;
         updateTabUI();
         updateTabLabels();
         filterGames(this.currentQuery);
@@ -212,6 +216,18 @@ public class MainActivity extends AppCompatActivity {
         this.showInstalledOnly = false;
         this.showUpdatesOnly = false;
         this.showFavoritesOnly = true;
+        this.showUncrackableOnly = false;
+        updateTabUI();
+        updateTabLabels();
+        filterGames(this.currentQuery);
+    }
+
+    public void selectUncrackableTab() {
+        this.currentTab = 4; // Uncrackable
+        this.showInstalledOnly = false;
+        this.showUpdatesOnly = false;
+        this.showFavoritesOnly = false;
+        this.showUncrackableOnly = true;
         updateTabUI();
         updateTabLabels();
         filterGames(this.currentQuery);
@@ -275,6 +291,15 @@ public class MainActivity extends AppCompatActivity {
         this.tabAll.setText("All (" + size + ")");
         this.tabInstalled.setText("Installed (" + i + ")");
         this.tabFavorites.setText("Favorites (" + favCount + ")");
+        int uncrackableCount = 0;
+        if (list != null) {
+            for (Game game : list) {
+                if (uncrackablePackages.contains(game.packageName)) {
+                    uncrackableCount++;
+                }
+            }
+        }
+        this.tabUncrackable.setText("Uncrackable (" + uncrackableCount + ")");
         setUpdatesTabText(i2);
     }
 
@@ -290,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
         this.tabInstalled = (Button) findViewById(R.id.tab_installed);
         this.tabUpdates = (Button) findViewById(R.id.tab_updates);
         this.tabFavorites = (Button) findViewById(R.id.tab_favorites);
+        this.tabUncrackable = (Button) findViewById(R.id.tab_uncrackable);
         this.btnSort = (Button) findViewById(R.id.btn_sort);
         this.btnQueue = (Button) findViewById(R.id.btn_queue);
         this.tabAll.setOnClickListener(new View.OnClickListener() {
@@ -314,6 +340,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MainActivity.this.selectFavoritesTab();
+            }
+        });
+        this.tabUncrackable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.selectUncrackableTab();
             }
         });
         
@@ -439,6 +471,7 @@ public class MainActivity extends AppCompatActivity {
         this.showInstalledOnly = false;
         this.showUpdatesOnly = false;
         this.showFavoritesOnly = false;
+        this.showUncrackableOnly = false;
         updateTabUI();
         updateTabLabels();
         filterGames(this.currentQuery);
@@ -449,6 +482,7 @@ public class MainActivity extends AppCompatActivity {
         this.showInstalledOnly = true;
         this.showUpdatesOnly = false;
         this.showFavoritesOnly = false;
+        this.showUncrackableOnly = false;
         updateTabUI();
         updateTabLabels();
         filterGames(this.currentQuery);
@@ -991,6 +1025,29 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.updateStatus("Config loaded. Mirror: " + config.baseUri);
                         MainActivity.this.downloadMeta(config);
                     });
+                    
+                    // Fetch uncrackable games
+                    try {
+                        Request uncrackableRequest = new Request.Builder().url("https://uncrackable.vrpirates.wiki/uncrackable.json").build();
+                        Response uncrackableResponse = MainActivity.this.client.newCall(uncrackableRequest).execute();
+                        if (uncrackableResponse.isSuccessful()) {
+                            String uncrackableJson = uncrackableResponse.body().string();
+                            com.google.gson.JsonArray array = new com.google.gson.JsonParser().parse(uncrackableJson).getAsJsonArray();
+                            java.util.Set<String> newUncrackable = new java.util.HashSet<>();
+                            for (com.google.gson.JsonElement element : array) {
+                                if (element.isJsonObject()) {
+                                    com.google.gson.JsonObject obj = element.getAsJsonObject();
+                                    if (obj.has("packagename")) {
+                                        newUncrackable.add(obj.get("packagename").getAsString());
+                                    }
+                                }
+                            }
+                            MainActivity.this.uncrackablePackages = newUncrackable;
+                            runOnUiThread(() -> MainActivity.this.updateTabLabels());
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 } catch (Exception e) {
                     runOnUiThread(() -> {
                         MainActivity.this.updateStatus("Config failed. Using fallback...");
@@ -1683,6 +1740,7 @@ public class MainActivity extends AppCompatActivity {
         this.tabInstalled.setBackgroundTintList(ColorStateList.valueOf(this.currentTab == 1 ? activeColor : inactiveColor));
         this.tabUpdates.setBackgroundTintList(ColorStateList.valueOf(this.currentTab == 2 ? activeColor : inactiveColor));
         this.tabFavorites.setBackgroundTintList(ColorStateList.valueOf(this.currentTab == 3 ? activeColor : inactiveColor));
+        this.tabUncrackable.setBackgroundTintList(ColorStateList.valueOf(this.currentTab == 4 ? activeColor : inactiveColor));
     }
 
     public void filterGames(String query) {
@@ -1701,6 +1759,8 @@ public class MainActivity extends AppCompatActivity {
                 } else if (this.currentTab == 2 && (!isPackageInstalled(g.packageName) || !g.needsUpdate)) {
                     matches = false;
                 } else if (this.currentTab == 3 && !g.isFavorite) {
+                    matches = false;
+                } else if (this.currentTab == 4 && !this.uncrackablePackages.contains(g.packageName)) {
                     matches = false;
                 }
             }

@@ -4,7 +4,7 @@ This document tracks the architectural evolution of **Squire VR**, an independen
 
 ---
 
-## 💎 Completed Milestones (v2.2.0 Stable)
+## 💎 Completed Milestones 
 
 | Milestone | Technical Impact |
 | :--- | :--- |

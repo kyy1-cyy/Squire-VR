@@ -511,7 +511,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        GridLayoutManager glm = new GridLayoutManager(this, 3);
+        int widthPx = getResources().getDisplayMetrics().widthPixels;
+        float density = getResources().getDisplayMetrics().density;
+        int widthDp = (int) (widthPx / density);
+        int targetItemDp = 340;
+        int cols = Math.max(1, Math.min(3, widthDp / targetItemDp));
+        GridLayoutManager glm = new GridLayoutManager(this, cols);
         glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -578,6 +583,9 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         this.recyclerView.setAdapter(this.adapter);
+        if (this.adapter != null) {
+            this.adapter.setSkeletonMode(true, cols * 4);
+        }
     }
 
     public void onFavoriteToggled(Game game) {
@@ -1730,6 +1738,7 @@ public class MainActivity extends AppCompatActivity {
         });
         
         if (this.adapter != null) {
+            this.adapter.setSkeletonMode(false, 0);
             this.adapter.updateList(filtered, this.currentTab == 1, this.currentTab == 2);
         }
     }

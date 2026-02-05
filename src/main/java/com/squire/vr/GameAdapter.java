@@ -22,10 +22,13 @@ import java.util.List;
 public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final int TYPE_DETAILS = 1;
     private static final int TYPE_GAME = 0;
+    private static final int TYPE_SKELETON = 2;
     private List<Object> items;
     private OnGameClickListener listener;
     private boolean showInstalledLabels;
     private boolean showUpdateLabels = false;
+    private boolean skeletonMode = false;
+    private int skeletonCount = 0;
 
     public interface OnGameClickListener {
         void onDownloadClick(Game game);
@@ -67,19 +70,31 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.showInstalledLabels = showInstalledLabels;
         this.showUpdateLabels = showUpdateLabels;
         this.items = new ArrayList(list);
+        this.skeletonMode = false;
+        this.skeletonCount = 0;
+        notifyDataSetChanged();
+    }
+    
+    public void setSkeletonMode(boolean enabled, int count) {
+        this.skeletonMode = enabled;
+        this.skeletonCount = Math.max(0, count);
         notifyDataSetChanged();
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemViewType(int i) {
-        return !(this.items.get(i) instanceof Game) ? 1 : 0;
+        if (this.skeletonMode) return TYPE_SKELETON;
+        return !(this.items.get(i) instanceof Game) ? TYPE_DETAILS : TYPE_GAME;
     }
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == 0) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_card, parent, false);
+        if (viewType == TYPE_GAME) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_card_poster, parent, false);
             return new GameViewHolder(view);
+        } else if (viewType == TYPE_SKELETON) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.skeleton_card, parent, false);
+            return new RecyclerView.ViewHolder(view) {};
         }
         FrameLayout frame = new FrameLayout(parent.getContext());
         frame.setLayoutParams(new ViewGroup.LayoutParams(-1, -2));
@@ -96,6 +111,9 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (this.skeletonMode) {
+            return;
+        }
         if (holder instanceof GameViewHolder) {
             bindGame((GameViewHolder) holder, (Game) this.items.get(position), position);
         } else if (holder instanceof DetailViewHolder) {
@@ -349,6 +367,7 @@ public class GameAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override // androidx.recyclerview.widget.RecyclerView.Adapter
     public int getItemCount() {
+        if (this.skeletonMode) return this.skeletonCount;
         return this.items.size();
     }
 

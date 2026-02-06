@@ -35,6 +35,7 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 | Feature | Description |
 |--------|-------------|
+|**Donations**:| Added Donations feature that allows users to donate there game files directly to rookies servers|
 | **No PC Needed** | Download games directly on your Quest. |
 | **Resume Support** | Pause and resume downloads anytime.  |
 | **Updates Tab** | Automatically compares installed games with the mirror and shows available updates. |

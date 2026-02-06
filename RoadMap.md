@@ -8,6 +8,7 @@ This document tracks the architectural evolution of **Squire VR**, an independen
 
 | Milestone | Technical Impact |
 | :--- | :--- |
+| **Details Tab**| This tab shows uncrackable and Multiplayer Available Games so you can be sure the game works in multiplayer|
 | **SQL Persistence** | Migrated from flat `.txt` to **SQLite (GameDao)** for high-speed caching and data integrity. |
 | **Native Sync Engine** | Integrated `rclone` and `7zip` Native .so files for direct mirror-to-HMD streaming . |
 | **Intelligent Updates** | Version-comparison engine cross-referencing mirror metadata vs. local `PackageInfo`. |

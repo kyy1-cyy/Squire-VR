@@ -8,7 +8,7 @@ This document tracks the architectural evolution of **Squire VR**, an independen
 
 | Milestone | Technical Impact |
 | :--- | :--- |
-|**Donations**: Added Donations feature that allows users to donate there game files directly to rookies servers|
+|**Donations**:| Added Donations feature that allows users to donate there game files directly to rookies servers|
 | **Details Tab**| This tab shows uncrackable and Multiplayer Available Games so you can be sure the game works in multiplayer|
 | **SQL Persistence** | Migrated from flat `.txt` to **SQLite (GameDao)** for high-speed caching and data integrity. |
 | **Native Sync Engine** | Integrated `rclone` and `7zip` Native .so files for direct mirror-to-HMD streaming . |

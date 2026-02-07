@@ -75,7 +75,7 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
    or use the direct link below.
    <p align="left">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest/download/SquireVR.apk">
-    <img src="https://img.shields.io/badge/Download%20Latest%20APK-green?style=for-the-badge" alt="Download Latest APK">
+    <img src="https://github.com/kyy1-cyy/Squire-VR/releases/latest" alt="Download Latest APK">
   </a>
 </p>
 2. Sideload it to your Quest (only required once).

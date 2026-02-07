@@ -35,16 +35,19 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 | Feature | Description |
 |--------|-------------|
-|**Donations**| Donations feature that allows users to donate there game files directly to rookies servers|
-| **No PC Needed** | Download games directly on your Quest. |
-| **Resume Support** | Pause and resume downloads anytime.  |
-| **Updates Tab** | Automatically compares installed games with the mirror and shows available updates. |
-| **SQL Database** | Faster, more reliable caching compared to old `.txt` files. |
-| **Smart Download Engine** | Self-healing logic to prevent errors like `Error: null`. |
-| **Rookie Logic** | Uses the same game lists and logic as familiar tools. |
-| **Storage Check** | Warns you if there isn’t enough space before downloading. |
-| **AutoSideload** | Installs the APK and moves OBB files automatically. |
-| **Downloaded Status** | Installed games are clearly marked to avoid duplicates. |
+| **Donations**             | Donations feature that allows users to donate their game files directly to Rookie’s servers. |
+| **No PC Needed**          | Download games directly on your Quest without needing a PC.                                  |
+| **Resume Support**        | Pause and resume downloads anytime without losing progress.                                  |
+| **Updates Tab**           | Automatically compares installed games with the mirror and shows available updates.          |
+| **SQL Database**          | Faster, more reliable caching compared to old `.txt` files.                                  |
+| **Smart Download Engine** | Self-healing logic to prevent errors like `Error: null`.                                     |
+| **Rookie Logic**          | Uses the same game lists and logic as familiar tools for consistency.                        |
+| **Storage Check**         | Warns you if there isn’t enough space before downloading.                                    |
+| **AutoSideload**          | Installs the APK and moves OBB files automatically.                                          |
+| **Downloaded Status**     | Installed games are clearly marked to avoid duplicates.                                      |
+| **Game Trailers**         | Click on a game card to instantly watch a trailer and preview gameplay before downloading.   |
+| **Settings menu**       | Menu that allows you to change the squire experence for a better feel              |
+
 
 > **Tip:**  
 > Wait for the local cache progress bar to finish before closing the app.

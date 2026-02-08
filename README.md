@@ -88,13 +88,6 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 ---
 
-## Support & Community
-Join the Discord for updates, announcements, and help.
-
-**https://discord.gg/9Cuva3VeFq**
-
----
-
 ## Credits
 Huge thanks to the VRP team for maintaining the servers and tools.  
 This project depends on their work and will be removed if requested.

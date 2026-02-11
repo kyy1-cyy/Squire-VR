@@ -1,5 +1,6 @@
 <p align="center">
-<img width="300" height="400" alt="Firefly 20260211151924" src="https://github.com/user-attachments/assets/37d2b1be-78fe-4c39-99f4-a8732bbab02a" />
+<img width="400" height="400" alt="rounded-corners (2)" src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" />
+
 
 
 

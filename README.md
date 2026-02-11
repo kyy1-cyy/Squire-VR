@@ -1,5 +1,5 @@
 <p align="center">
-<img width="300" height="200" alt="Firefly 20260211151924" src="https://github.com/user-attachments/assets/37d2b1be-78fe-4c39-99f4-a8732bbab02a" />
+<img width="300" height="400" alt="Firefly 20260211151924" src="https://github.com/user-attachments/assets/37d2b1be-78fe-4c39-99f4-a8732bbab02a" />
 
 
 

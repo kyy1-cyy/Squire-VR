@@ -7,6 +7,10 @@
 <h1 align="center">Squire VR 🛡️</h1>
 <p align="center">
   Native VRPirates client for Meta Quest
+<img width="50" height="50" alt="ezgif-8e511172334561a8" src="https://github.com/user-attachments/assets/082f3c1d-64d9-4f38-8f52-2f02ca9e587c" />
+
+
+
 </p>
 
 <p align="center">

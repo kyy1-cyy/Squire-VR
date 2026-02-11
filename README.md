@@ -15,7 +15,7 @@
 
 <p align="center">
   <img src="https://badgen.net/github/release/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Latest Release">
-  <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR/total?label=DOWNLOADS&color=blue&icon=github" alt="Total Downloads">
+  <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR/total?label=Downloads&color=blue&icon=github" alt="Total Downloads">
   <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=flat" alt="Views">
   <img src="https://badgen.net/github/last-commit/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Last Commit">
   <img src="https://badgen.net/github/issues/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Issues">

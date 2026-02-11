@@ -15,7 +15,7 @@
 
 <p align="center">
   <img src="https://badgen.net/github/release/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Latest Release">
-  <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Downloads">
+  <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR/total?color=blue&icon=github" alt="Total Downloads">
   <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=flat" alt="Views">
   <img src="https://badgen.net/github/last-commit/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Last Commit">
   <img src="https://badgen.net/github/issues/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Issues">
@@ -36,17 +36,17 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
 | Feature | Description |
 |--------|-------------|
 | **Donations** | Donations feature that allows users to donate their game files directly to Rookie’s servers. |
-| **No PC Needed** | Download games directly on your Quest without needing a PC.                                  |
-| **Resume Support** | Pause and resume downloads anytime without losing progress.                                  |
-| **Updates Tab** | Automatically compares installed games with the mirror and shows available updates.          |
-| **SQL Database** | Faster, more reliable caching compared to old `.txt` files.                                  |
-| **Smart Download Engine** | Self-healing logic to prevent errors like `Error: null`.                                     |
-| **Rookie Logic** | Uses the same game lists and logic as familiar tools for consistency.                        |
-| **Storage Check** | Warns you if there isn’t enough space before downloading.                                    |
-| **AutoSideload** | Installs the APK and moves OBB files automatically.                                          |
-| **Downloaded Status** | Installed games are clearly marked to avoid duplicates.                                      |
-| **Game Trailers** | Click on a game card to instantly watch a trailer and preview gameplay before downloading.   |
-| **Settings menu** | Menu that allows you to change the squire experience for a better feel                       |
+| **No PC Needed** | Download games directly on your Quest without needing a PC. |
+| **Resume Support** | Pause and resume downloads anytime without losing progress. |
+| **Updates Tab** | Automatically compares installed games with the mirror and shows available updates. |
+| **SQL Database** | Faster, more reliable caching compared to old `.txt` files. |
+| **Smart Download Engine** | Self-healing logic to prevent errors like `Error: null`. |
+| **Rookie Logic** | Uses the same game lists and logic as familiar tools for consistency. |
+| **Storage Check** | Warns you if there isn’t enough space before downloading. |
+| **AutoSideload** | Installs the APK and moves OBB files automatically. |
+| **Downloaded Status** | Installed games are clearly marked to avoid duplicates. |
+| **Game Trailers** | Click on a game card to instantly watch a trailer and preview gameplay before downloading. |
+| **Settings menu** | Menu that allows you to change the squire experience for a better feel. |
 
 
 > **Tip:** > Wait for the local cache progress bar to finish before closing the app.

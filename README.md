@@ -16,6 +16,7 @@
 <p align="center">
   <img src="https://badgen.net/github/release/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Latest Release">
   <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Downloads">
+  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fkyy1-cyy%2FSquire-VR&count_bg=%230070FF&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=VIEWS&edge_flat=false" alt="Views">
   <img src="https://badgen.net/github/last-commit/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Last Commit">
   <img src="https://badgen.net/github/issues/kyy1-cyy/Squire-VR?color=blue&icon=github" alt="Issues">
 </p>

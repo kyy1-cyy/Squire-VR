@@ -9,12 +9,12 @@
 
 <p align="center">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR?label=Download%20Latest%20APK&color=green&cache=300" alt="Download APK">
+    <img src="https://badgen.net/badge/Download/Latest%20APK/green?icon=github" alt="Download APK">
   </a>
 </p>
 
 <p align="center">
-  <img src="https://badgen.net/github/release/kyy1-cyy/Squire-VR?color=blue&label=Latest%20Release&icon=github&cache=300" alt="Latest Release">
+  <img src="https://badgen.net/github/tag/kyy1-cyy/Squire-VR?color=blue&label=Latest%20Release&icon=github&cache=300" alt="Latest Release">
   <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR?color=blue&label=Downloads&icon=github&cache=300" alt="Total Downloads">
   <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=flat" alt="Views">
   <img src="https://badgen.net/github/last-commit/kyy1-cyy/Squire-VR?color=blue&label=Last%20Commit&icon=github&cache=300" alt="Last Commit">
@@ -73,7 +73,7 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
    or use the direct link below.
 <p align="left">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR?label=Download%20Latest%20APK&color=green&cache=300" alt="Download APK">
+    <img src="https://badgen.net/badge/Download/Latest%20APK/green?icon=github" alt="Download APK">
   </a>
 </p>
 2. Sideload it to your Quest (only required once).

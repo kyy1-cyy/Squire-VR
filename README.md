@@ -1,5 +1,4 @@
 
-![Latest Release](https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?label=Latest&logo=github)
 
 
 <p align="center">

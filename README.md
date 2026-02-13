@@ -1,3 +1,7 @@
+
+![Latest Release](https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?label=Latest&logo=github)
+
+
 <p align="center">
 <img width="400" height="400" alt="rounded-corners (2)" src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" />
 

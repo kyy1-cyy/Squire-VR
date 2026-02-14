@@ -1,3 +1,6 @@
+
+
+
 <p align="center">
 <img width="400" height="400" alt="rounded-corners (2)" src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" />
 
@@ -9,16 +12,16 @@
 
 <p align="center">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://badgen.net/badge/Download/Latest%20APK/green?icon=github" alt="Download APK">
+    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&label=Download%20Latest%20APK&color=green" alt="Download APK">
   </a>
 </p>
 
 <p align="center">
-  <img src="https://badgen.net/github/tag/kyy1-cyy/Squire-VR?color=blue&label=Latest%20Release&icon=github&cache=300" alt="Latest Release">
-  <img src="https://badgen.net/github/assets-dl/kyy1-cyy/Squire-VR?color=blue&label=Downloads&icon=github&cache=300" alt="Total Downloads">
+  <img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?color=blue&label=Latest%20Release&logo=github" alt="Latest Release">
+  <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?color=blue&label=Downloads&logo=github" alt="Total Downloads">
   <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=blue&style=flat" alt="Views">
-  <img src="https://badgen.net/github/last-commit/kyy1-cyy/Squire-VR?color=blue&label=Last%20Commit&icon=github&cache=300" alt="Last Commit">
-  <img src="https://badgen.net/github/open-issues/kyy1-cyy/Squire-VR?color=blue&label=Issues&icon=github&cache=300" alt="Issues">
+  <img src="https://img.shields.io/github/last-commit/kyy1-cyy/Squire-VR?color=blue&logo=github" alt="Last Commit">
+  <img src="https://img.shields.io/github/issues/kyy1-cyy/Squire-VR?color=blue&logo=github" alt="Issues">
 </p>
 
 ---
@@ -73,7 +76,7 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
    or use the direct link below.
 <p align="left">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://badgen.net/badge/Download/Latest%20APK/green?icon=github" alt="Download APK">
+    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&label=Download%20Latest%20APK&color=green" alt="Download APK">
   </a>
 </p>
 2. Sideload it to your Quest (only required once).

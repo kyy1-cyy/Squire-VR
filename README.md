@@ -13,7 +13,7 @@
   <tr>
     <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Stable" /></a></td>
     <td align="center" width="200"><img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=24292e&label=Downloads" /></td>
-    <td align="center" width="200"><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=24292e&style=for-the-badge" /></td>
+    <td align="center" width="200"><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=4c1&style=for-the-badge" /></td>
   </tr>
   <tr>
     <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/badge/Get_Latest-APK-24292e?style=for-the-badge&logo=android" /></a></td>

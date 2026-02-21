@@ -69,7 +69,7 @@ Squire VR is a native Android app that lets you browse and download games direct
   <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" width="48%" />
   <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" width="48%" />
 </div>
-## Ui and App features will change. 
+Ui and App features will change. 
 </details>
 
 ---

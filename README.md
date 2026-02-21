@@ -7,17 +7,26 @@
 # Squire VR
 **The definitive standalone sideloading client for Meta Quest.**
 
+---
+
+<div>
+  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
+    <img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Stable" alt="Latest">
+  </a>
+  <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=24292e&label=Downloads" alt="Downloads">
+  <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=24292e&style=for-the-badge" alt="Views">
+</div>
+<div style="margin-top: 10px;">
+  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
+    <img src="https://img.shields.io/badge/Get_Latest-APK-24292e?style=for-the-badge&logo=android" alt="APK">
+  </a>
+  <img src="https://img.shields.io/github/last-commit/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Updated" alt="Updated">
+  <img src="https://img.shields.io/github/issues/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Issues" alt="Issues">
 </div>
 
 ---
 
-### ◈ Status & Metrics
-| Build | Stats | Activity |
-| :--- | :--- | :--- |
-| [![Latest](https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=333&label=Stable)](https://github.com/kyy1-cyy/Squire-VR/releases/latest) | ![Downloads](https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=333&label=Downloads) | ![Issues](https://img.shields.io/github/issues/kyy1-cyy/Squire-VR?style=for-the-badge&color=333&label=Issues) |
-| [![APK](https://img.shields.io/badge/Get_Latest-APK-333?style=for-the-badge&logo=android)](https://github.com/kyy1-cyy/Squire-VR/releases/latest) | ![Views](https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=333&style=for-the-badge) | ![Last Commit](https://img.shields.io/github/last-commit/kyy1-cyy/Squire-VR?style=for-the-badge&color=333&label=Updated) |
-
----
+</div>
 
 ### ◈ Experience
 Squire VR eliminates the middleman. Browse, download, and install the entire VRP mirror directly on your headset. No cables, no PC, no friction.

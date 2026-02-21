@@ -27,21 +27,28 @@
 ---
 
 ### ◈ Experience
-Squire VR eliminates the middleman. Browse, download, and install the entire VRP mirror directly on your headset. No cables, no PC, no friction.
+Squire VR eliminates the middleman. Browse, download, and install the entire VRP mirror directly on your headset. No cables, no PC, no friction. Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 * **Standalone Power** — Complete independence from desktop clients.
 * **Automatic Handshake** — AutoSideload manages APKs and OBBs for you.
-* **Integrity Focused** — SQL-driven caching and self-healing logic.
+* **Integrity Focused** — SQL-driven caching and self-healing logic to prevent `Error: null`.
 * **Visual Discovery** — Integrated trailers and metadata for every title.
 
 ---
 
-### ◈ Capabilities
-- [x] **Smart Resume** — Never restart a failed download again.
-- [x] **Update Tracking** — Real-time comparison between local and mirror versions.
-- [x] **Disk Management** — Pre-flight storage checks to prevent corrupt installs.
-- [x] **Community-Driven** — Direct file donation portal for the VRP servers.
-- [x] **Performance** — High-speed database caching.
+### ◈ Full Capabilities
+- [x] **No PC Needed** — Download games directly on your Quest without any external hardware.
+- [x] **Smart Resume** — Pause and resume downloads at any time without losing progress.
+- [x] **AutoSideload** — Installs the APK and moves OBB files to the correct path automatically.
+- [x] **Update Tracking** — Automatically compares installed games with the mirror for updates.
+- [x] **SQL Database** — High-speed, reliable caching (replaces legacy `.txt` file parsing).
+- [x] **Smart Download Engine** — Self-healing logic designed to minimize download errors.
+- [x] **Rookie Logic** — Uses the same game lists and logic as familiar tools for total consistency.
+- [x] **Storage Check** — Pre-flight warnings if there isn't enough space before downloading.
+- [x] **Downloaded Status** — Installed games are clearly marked to avoid duplicate downloads.
+- [x] **Game Trailers** — Watch gameplay previews directly within the app before downloading.
+- [x] **Donation Portal** — Allows users to donate their game files directly to Rookie’s servers.
+- [x] **Customization** — Dedicated settings menu to tailor the Squire experience to your feel.
 
 ---
 
@@ -53,6 +60,8 @@ Squire VR eliminates the middleman. Browse, download, and install the entire VRP
   <br>
   <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" width="49%" />
   <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" width="49%" />
+  <br>
+  <i>Note: UI is subject to change. Please wait for the local cache progress bar to finish before closing the app.</i>
 </div>
 
 ---

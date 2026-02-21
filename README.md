@@ -1,6 +1,3 @@
-
-
-
 <p align="center">
 <img width="400" height="400" alt="rounded-corners (2)" src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" />
 
@@ -12,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&label=Download%20Latest%20APK&color=green" alt="Download APK">
+    <img src="https://img.shields.io/badge/Download%20Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download APK">
   </a>
 </p>
 
@@ -72,13 +69,13 @@ Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 ## Download & Setup
 
-1. Download the latest APK from the **Releases** page  
-   or use the direct link below.
+1. Download the latest APK from the **Releases** page or use the direct link below.
 <p align="left">
   <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
-    <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&label=Download%20Latest%20APK&color=green" alt="Download APK">
+    <img src="https://img.shields.io/badge/Download%20Latest%20APK-2ea44f?style=for-the-badge&logo=android&logoColor=white" alt="Download APK">
   </a>
 </p>
+
 2. Sideload it to your Quest (only required once).
 3. Open the app and grant **All Files Access**:
    - Scroll to the app in settings.

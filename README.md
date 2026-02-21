@@ -11,14 +11,14 @@
 
 <table align="center">
   <tr>
-    <td align="center"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Stable" /></a></td>
-    <td align="center"><img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=24292e&label=Downloads" /></td>
-    <td align="center"><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=24292e&style=for-the-badge" /></td>
+    <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Stable" /></a></td>
+    <td align="center" width="200"><img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=24292e&label=Downloads" /></td>
+    <td align="center" width="200"><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=24292e&style=for-the-badge" /></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/badge/Get_Latest-APK-24292e?style=for-the-badge&logo=android" /></a></td>
-    <td align="center"><img src="https://img.shields.io/github/last-commit/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Updated" /></td>
-    <td align="center"><img src="https://img.shields.io/badge/Community-Discord-24292e?style=for-the-badge&logo=discord" /></td>
+    <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/badge/Get_Latest-APK-24292e?style=for-the-badge&logo=android" /></a></td>
+    <td align="center" width="200"><img src="https://img.shields.io/github/last-commit/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Updated" /></td>
+    <td align="center" width="200"><img src="https://img.shields.io/github/issues/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Issues" /></td>
   </tr>
 </table>
 
@@ -30,7 +30,7 @@
 Squire VR eliminates the middleman. Browse, download, and install the entire VRP mirror directly on your headset. No cables, no PC, no friction.
 
 <details>
-<summary><b>Click to expand full project description</b></summary>
+<summary><b>Click to expand project details</b></summary>
 <br>
 Squire VR is a native Android app that lets you browse and download games directly from the VRP Games mirror on your Meta Quest. Think of it as a lightweight, standalone version of Rookie Sideloader. No PC or phone required.
 </details>
@@ -92,8 +92,8 @@ Squire VR is a native Android app that lets you browse and download games direct
 <br>
 
 * **"Error: null"** — Ensure you have granted "All Files Access" and that the VRP mirrors are currently online.
-* **Cache Progress** — Do not close the app while the local cache progress bar is moving; this ensures your game list is accurate.
-* **Storage** — If a download fails immediately, check if you have at least 2x the game's size in free space for the extraction process.
+* **Cache Progress** — Do not close the app while the local cache progress bar is moving.
+* **Storage** — Ensure you have at least 2x the game's size in free space before downloading.
 </details>
 
 ---

@@ -4,7 +4,7 @@
 
 <div align="center">
 
-# Squire VR
+# Squire VR 🛡️
 **The definitive standalone sideloading client for Meta Quest.**
 
 <br>
@@ -26,42 +26,29 @@
 
 ---
 
-### ◈ Experience
-Squire VR eliminates the middleman. Browse, download, and install the entire VRP mirror directly on your headset. No cables, no PC, no friction.
-
-<details>
-<summary><b>Click to expand project details</b></summary>
-<br>
-Squire VR is a native Android app that lets you browse and download games directly from the VRP Games mirror on your Meta Quest. Think of it as a lightweight, standalone version of Rookie Sideloader. No PC or phone required.
-</details>
+### ◈ Overview
+**Squire VR** is a native Android app that lets you browse and download games directly from the VRP Games mirror on your Meta Quest. No PC or phone required—just pure, frictionless sideloading. Think of it as a lightweight, standalone version of Rookie Sideloader.
 
 ---
 
-### ◈ Capabilities & Features
-<details>
-<summary><b>View all 12 core features</b></summary>
-<br>
+### ◈ Key Features
 
-- [x] **No PC Needed** — Download games directly on your Quest.
-- [x] **Smart Resume** — Pause and resume downloads at any time.
-- [x] **AutoSideload** — Automatically handles APK and OBB placement.
-- [x] **Update Tracking** — Live comparison between local and mirror versions.
-- [x] **SQL Database** — High-speed, reliable caching logic.
-- [x] **Smart Download Engine** — Minimizes `Error: null` and mirror issues.
-- [x] **Rookie Logic** — 100% consistency with existing VRP tools.
-- [x] **Storage Check** — Pre-flight warnings for low disk space.
-- [x] **Downloaded Status** — Clear visual markers for installed titles.
-- [x] **Game Trailers** — Gameplay previews integrated into the UI.
-- [x] **Donation Portal** — Contribute files back to the Rookie servers.
-- [x] **Customization** — Tailor the UI and experience via Settings.
-</details>
+| Feature | Description |
+| :--- | :--- |
+| **No PC Needed** | Download games directly on your Quest. |
+| **Smart Resume** | Pause and resume downloads at any time. |
+| **AutoSideload** | Automatically handles APK and OBB placement. |
+| **Update Tracking** | Live comparison between local and mirror versions. |
+| **SQL Database** | High-speed, reliable caching logic. |
+| **Smart Engine** | Minimizes `Error: null` and mirror issues. |
+| **Game Trailers** | Gameplay previews integrated directly into the UI. |
+| **Storage Check** | Pre-flight warnings for low disk space. |
+
+> **Pro Tip:** Wait for the local cache progress bar to finish before closing the app to ensure your library stays updated.
 
 ---
 
 ### ◈ Interface Preview
-<details>
-<summary><b>View Screenshots</b></summary>
-<br>
 <div align="center">
   <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="48%" />
   <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" width="48%" />
@@ -69,35 +56,23 @@ Squire VR is a native Android app that lets you browse and download games direct
   <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" width="48%" />
   <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" width="48%" />
 </div>
-</details>
 
 ---
 
 ### ◈ Deployment & Setup
-<details>
-<summary><b>Installation Instructions</b></summary>
-<br>
-
-1. **Obtain Package:** Download the `SquireVR.apk` from [Releases](https://github.com/kyy1-cyy/Squire-VR/releases/latest).
+1. **Obtain Package:** Download the `SquireVR.apk` from the [Latest Releases](https://github.com/kyy1-cyy/Squire-VR/releases/latest).
 2. **Initial Load:** Sideload the APK to your Quest (one-time setup).
 3. **Permissions:** Enable **All Files Access** in `Settings > Apps > Squire VR`.
-4. **Launch:** Open from your **Unknown Sources**.
-</details>
+4. **Launch:** Open from your **Unknown Sources** and start browsing.
 
 ---
 
 ### ◈ Troubleshooting
-<details>
-<summary><b>Common Fixes</b></summary>
-<br>
-
 * **"Error: null"** — Ensure you have granted "All Files Access" and that the VRP mirrors are currently online.
-* **Cache Progress** — Do not close the app while the local cache progress bar is moving.
-* **Storage** — Ensure you have at least 2x the game's size in free space before downloading.
-</details>
+* **Storage Issues** — Ensure you have at least 2x the game's size in free space before starting a download.
+* **Donations** — You can contribute files back to the Rookie servers via the in-app Donation Portal.
 
 ---
 
 ### ◈ Acknowledgment
 > This software is a bridge to the work provided by the **VRP Team**. We respect their contributions; this project will be sunset upon their request.
-

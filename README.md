@@ -1,103 +1,84 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" width="400" height="400" />
+  <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" width="280" />
 </p>
 
-<div align="center">
+<h1 align="center">Squire VR</h1>
 
-# Squire VR
-**The definitive standalone sideloading client for Meta Quest.**
-
-<br>
-
-<table align="center">
-  <tr>
-    <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Stable" /></a></td>
-    <td align="center" width="200"><img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=for-the-badge&color=24292e&label=Downloads" /></td>
-    <td align="center" width="200"><img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=Views&color=24292e&style=for-the-badge" /></td>
-  </tr>
-  <tr>
-    <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/badge/Get_Latest-APK-24292e?style=for-the-badge&logo=android" /></a></td>
-    <td align="center" width="200"><img src="https://img.shields.io/github/last-commit/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Updated" /></td>
-    <td align="center" width="200"><img src="https://img.shields.io/github/issues/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Issues" /></td>
-  </tr>
-</table>
-
-</div>
+<p align="center">
+  Standalone sideloading client for Meta Quest  
+  <br>
+  <sub>No PC • No cables • No friction</sub>
+</p>
 
 ---
 
-### ◈ Experience
-Squire VR eliminates the middleman. Browse, download, and install the entire VRP mirror directly on your headset. No cables, no PC, no friction.
+## Download
 
-<details>
-<summary><b>Click to expand project details</b></summary>
-<br>
-Squire VR is a native Android app that lets you browse and download games directly from the VRP Games mirror on your Meta Quest. Think of it as a lightweight, standalone version of Rookie Sideloader. No PC or phone required.
-</details>
-
----
-
-### ◈ Capabilities & Features
-<details>
-<summary><b>View all 12 core features</b></summary>
-<br>
-
-- [x] **No PC Needed** — Download games directly on your Quest.
-- [x] **Smart Resume** — Pause and resume downloads at any time.
-- [x] **AutoSideload** — Automatically handles APK and OBB placement.
-- [x] **Update Tracking** — Live comparison between local and mirror versions.
-- [x] **SQL Database** — High-speed, reliable caching logic.
-- [x] **Smart Download Engine** — Minimizes `Error: null` and mirror issues.
-- [x] **Rookie Logic** — 100% consistency with existing VRP tools.
-- [x] **Storage Check** — Pre-flight warnings for low disk space.
-- [x] **Downloaded Status** — Clear visual markers for installed titles.
-- [x] **Game Trailers** — Gameplay previews integrated into the UI.
-- [x] **Donation Portal** — Contribute files back to the Rookie servers.
-- [x] **Customization** — Tailor the UI and experience via Settings.
-</details>
+<p align="center">
+  <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest">
+    <b>⬇ Download Latest APK</b>
+  </a>
+</p>
 
 ---
 
-### ◈ Interface Preview
-<details>
-<summary><b>View Screenshots</b></summary>
-<br>
-<div align="center">
+## Overview
+
+**Squire VR** is a native Android application that allows you to browse and download directly on your Meta Quest headset.
+
+It delivers a streamlined, standalone experience inspired by familiar sideloading tools — without requiring a computer or phone.
+
+---
+
+## Core Features
+
+| | |
+|---|---|
+| ◉ Direct Download | Install games directly on your Quest |
+| ◉ Resume Support | Pause and continue downloads anytime |
+| ◉ Auto Sideload | Automatic APK install + OBB placement |
+| ◉ Update Detection | Compares installed versions with mirror |
+| ◉ SQL Database | Fast, stable caching system |
+| ◉ Smart Engine | Reduced mirror and null errors |
+| ◉ Storage Check | Pre-download space verification |
+| ◉ Installed Indicators | Clear visual installed status |
+| ◉ Trailers | Preview gameplay before downloading |
+| ◉ Donations | Contribute files back to servers |
+| ◉ Settings | Customize the experience |
+
+---
+
+## Screenshots
+
+<p align="center">
   <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="48%" />
   <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" width="48%" />
-  <br>
+</p>
+<p align="center">
   <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176" width="48%" />
   <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b" width="48%" />
-</div>
-Ui and App features will change. 
-</details>
+</p>
 
 ---
 
-### ◈ Deployment & Setup
-<details>
-<summary><b>Installation Instructions</b></summary>
-<br>
+## Setup
 
-1. **Obtain Package:** Download the `SquireVR.apk` from [Releases](https://github.com/kyy1-cyy/Squire-VR/releases/latest).
-2. **Initial Load:** Sideload the APK to your Quest (one-time setup).
-3. **Permissions:** Enable **All Files Access** in `Settings > Apps > Squire VR`.
-4. **Launch:** Open from your **Unknown Sources**.
-</details>
+1. Download the APK from the Releases page  
+2. Sideload it to your Quest (one-time step)  
+3. Grant **All Files Access** in system settings  
+4. Launch from **Unknown Sources**
 
 ---
 
-### ◈ Troubleshooting
-<details>
-<summary><b>Common Fixes</b></summary>
-<br>
+## Troubleshooting
 
-* **"Error: null"** — Ensure you have granted "All Files Access" and that the VRP mirrors are currently online.
-* **Cache Progress** — Do not close the app while the local cache progress bar is moving.
-* **Storage** — Ensure you have at least 2x the game's size in free space before downloading.
-</details>
+• Do not close the app while the cache progress bar is running  
+• Ensure sufficient storage (recommended 2× game size)  
+• If errors appear, verify permissions and mirror availability  
 
 ---
 
-### ◈ Acknowledgment
-> This software is a bridge to the work provided by the **VRP Team**. We respect their contributions; this project will be sunset upon their request.
+## Credits
+
+This project acts as a client bridge.  
+Respect to the original server maintainers.

@@ -62,7 +62,7 @@
 ### ◈ Deployment & Setup
 1. **Obtain Package:** Download the `SquireVR.apk` from the [Latest Releases](https://github.com/kyy1-cyy/Squire-VR/releases/latest).
 2. **Initial Load:** Sideload the APK to your Quest (one-time setup).
-3. **Permissions:** Enable **All Files Access** in `Settings > Apps > Squire VR`.
+3. **Permissions:** Enable **All Files Access** on apo launch > Squire VR`.
 4. **Launch:** Open from your **Unknown Sources** and start browsing.
 
 ---

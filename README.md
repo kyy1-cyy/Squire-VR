@@ -9,7 +9,7 @@
 
 <br>
 
-**Metrics
+###Metrics
 <table align="center">
   <tr>
     <td align="center" width="200"><a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest"><img src="https://img.shields.io/github/v/release/kyy1-cyy/Squire-VR?style=for-the-badge&color=24292e&label=Stable" /></a></td>

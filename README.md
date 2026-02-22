@@ -19,7 +19,7 @@
 <br />
 
 ### ◈ ARCHITECTURAL OVERVIEW
-**Squire VR** is a high-performance, native Android utility engineered to interface directly with VRP mirrors. By eliminating the necessity for external hardware (PC/Mobile), it provides a streamlined, standalone sideloading experience directly within the Meta Quest environment.
+**Squire VR** is a high-performance, native Android utility engineered to interface directly with VRP mirrors. By eliminating the necessity for external hardware (PC/Mobile), it provides a streamlined, standalone sideloading experience directly within the Meta Quest environment for Rookie sideloader .
 
 ---
 

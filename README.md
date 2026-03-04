@@ -16,6 +16,10 @@
 
 </div>
 
+## Support
+any needed help will he answerd in the discord servr
+> https://discord.gg/w7rg7Ca4YD
+
 <br />
 
 ### ◈ ARCHITECTURAL OVERVIEW

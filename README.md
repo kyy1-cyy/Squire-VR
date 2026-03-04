@@ -21,7 +21,7 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 
 > [!TIP]
 > **Join the Discord:** [discord.gg/w7rg7Ca4YD](https://discord.gg/w7rg7Ca4YD)
-> *Response times are fastest via the #support ticket system.*
+> *Any help needed will be answered in the discord.*
 
 
 <br />

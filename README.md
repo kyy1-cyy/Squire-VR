@@ -16,11 +16,14 @@
 
 </div>
 
-## Support
-any needed help will he answerd in the discord servr
-> https://discord.gg/w7rg7Ca4YD
+## 🛠️ Technical Support
+For system troubleshooting, bug reports, or general assistance, join the **Squire VR** headquarters. 
 
-###
+> [!TIP]
+> **Join the Discord:** [discord.gg/w7rg7Ca4YD](https://discord.gg/w7rg7Ca4YD)
+> *Response times are fastest via the #support ticket system.*
+
+
 <br />
 
 ### ◈ ARCHITECTURAL OVERVIEW

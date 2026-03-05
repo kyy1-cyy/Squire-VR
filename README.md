@@ -4,7 +4,7 @@
 
 <div align="center">
 
-# SQUIRE VR
+# ⚔️ SQUIRE VR
 **The definitive standalone sideloading ecosystem for Meta Quest.**
 
 ---

@@ -1,9 +1,8 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" width="320" />
-<
 <div align="center">
 
-## ❌ DISCONTINUED AS OF MARCH 11 2026
+
 # ⚔️ SQUIRE VR
 **The definitive standalone sideloading ecosystem for Meta Quest.**
 
@@ -27,7 +26,7 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 <br />
 
 ### ◈ ARCHITECTURAL OVERVIEW
-**Squire VR** is a high-performance, native Android utility engineered to interface directly with VRP mirrors. By eliminating the necessity for external hardware (PC/Mobile), it provides a streamlined, standalone sideloading experience directly within the Meta Quest environment for Rookie sideloader .
+**Squire VR** is a high-performance, native Android utility engineered to interface directly with VrSrc servers. By eliminating the necessity for external hardware (PC/Mobile).
 
 ---
 
@@ -74,4 +73,4 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 ---
 
 ### ◈ LEGAL & ACKNOWLEDGMENTS
-> This project functions as a gateway to the repositories maintained by the **VRP Team**. Development and distribution will cease immediately upon formal request by the primary stakeholders.
+> This project functions as a gateway to the repositories maintained by the **VrSrc Team**. Development and distribution will cease immediately upon formal request by the primary stakeholders.

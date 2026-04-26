@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squire VR | Standalone Quest Ecosystem</title>
+    <style>
+        :root {
+            --accent: #64ffda;
+            --navy: #0a192f;
+            --dark: #020c1b;
+            --white: #ccd6f6;
+            --glass: rgba(100, 255, 218, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(180deg, var(--navy) 0%, var(--dark) 100%);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Smooth Entrance */
+        .fade-in { animation: fadeIn 1s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Header & Logo */
+        .hero { text-align: center; margin-bottom: 60px; }
+        .main-logo { width: 280px; border-radius: 20px; filter: drop-shadow(0 0 20px rgba(100, 255, 218, 0.3)); }
+        h1 { font-size: 3rem; margin: 20px 0 10px; letter-spacing: 2px; color: #fff; }
+        .subtitle { color: var(--accent); font-weight: bold; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Stats Row */
+        .stats { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+
+        /* Glow Rounded Buttons */
+        .cta-container { text-align: center; margin: 40px 0; }
+        .btn-glow {
+            display: inline-block;
+            background: transparent;
+            color: var(--accent);
+            padding: 18px 45px;
+            border: 2px solid var(--accent);
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
+            text-transform: uppercase;
+        }
+        .btn-glow:hover {
+            background: var(--accent);
+            color: var(--navy);
+            box-shadow: 0 0 30px rgba(100, 255, 218, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Glass Cards for Specs */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
+        .card { 
+            background: var(--glass); 
+            border: 1px solid rgba(100, 255, 218, 0.1); 
+            padding: 20px; 
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .card b { color: var(--accent); display: block; margin-bottom: 5px; }
+
+        /* Screenshots Grid */
+        .manifest { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .manifest img { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; }
+        .manifest img:hover { border-color: var(--accent); transform: scale(1.02); }
+
+        /* Dropdowns */
+        details { background: rgba(255,255,255,0.03); border-radius: 10px; margin-bottom: 10px; padding: 15px; border: 1px solid rgba(255,255,255,0.05); }
+        summary { cursor: pointer; font-weight: bold; color: var(--accent); outline: none; }
+        
+        .discord-box { background: #5865F2; color: white; padding: 20px; border-radius: 15px; text-align: center; margin: 40px 0; }
+        .discord-box a { color: white; font-weight: bold; text-decoration: underline; }
+
+        footer { text-align: center; padding: 60px 0; font-size: 0.8rem; color: #495670; }
+        hr { border: 0; border-top: 1px solid rgba(100,255,218,0.1); margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+<div class="container fade-in">
+    <div class="hero">
+        <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" class="main-logo" alt="Squire VR Logo">
+        <h1>⚔️ SQUIRE VR</h1>
+        <div class="subtitle">The definitive standalone sideloading ecosystem</div>
+        
+        <div class="stats" style="margin-top: 20px;">
+            <img src="https://img.shields.io/github/downloads/kyy1-cyy/Squire-VR/total?style=flat-square&color=000000&label=DOWNLOADS">
+            <img src="https://komarev.com/ghpvc/?username=kyy1-cyy&repo=Squire-VR&label=VIEWS&color=000000&style=flat-square">
+        </div>
+    </div>
+
+    <div class="cta-container">
+        <a href="https://github.com/kyy1-cyy/Squire-VR/releases/latest" class="btn-glow">Download Squire Vr</a>
+    </div>
+
+    <div class="discord-box">
+        🛡️ <b>TECHNICAL SUPPORT:</b> Join the Squire VR Headquarters for troubleshooting.<br>
+        <a href="https://discord.gg/w7rg7Ca4YD">discord.gg/w7rg7Ca4YD</a>
+    </div>
+
+    <h3>◈ ARCHITECTURAL OVERVIEW</h3>
+    <p>Squire VR is a high-performance, native Android utility engineered to interface directly with <b>VRP mirrors</b>. By eliminating the necessity for external hardware (PC/Mobile), it provides a streamlined, standalone experience for Rookie sideloader.</p>
+
+    <hr>
+
+    <h3>◈ CORE CAPABILITIES</h3>
+    <div class="card-grid">
+        <div class="card"><b>AUTONOMOUS</b> Native execution on Quest; zero external dependencies.</div>
+        <div class="card"><b>RESILIENCE</b> Smart-Resume protocols for interrupted data streams.</div>
+        <div class="card"><b>AUTOMATION</b> AutoSideload logic for seamless APK/OBB deployment.</div>
+        <div class="card"><b>SYNC</b> Real-time version comparison between local storage and mirrors.</div>
+        <div class="card"><b>DATABASE</b> High-concurrency SQL engine for metadata caching.</div>
+        <div class="card"><b>VALIDATION</b> Pre-flight storage diagnostics and integrity checks.</div>
+    </div>
+
+    <hr>
+
+    <h3>◈ INTERFACE MANIFEST</h3>
+    <div class="manifest">
+        <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238">
+        <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b">
+        <img src="https://github.com/user-attachments/assets/36787044-c154-4fce-b521-a062eae42176">
+        <img src="https://github.com/user-attachments/assets/32fb25f7-b496-4ff0-af66-3f07028ffc3b">
+    </div>
+
+    <hr>
+
+    <h3>◈ DIAGNOSTICS & SUPPORT</h3>
+    <details>
+        <summary>NULL_POINTER_ERROR</summary>
+        <p>Verify that "All Files Access" is active and mirror servers are operational.</p>
+    </details>
+    <details>
+        <summary>STORAGE_EXHAUSTION</summary>
+        <p>Ensure available capacity is ≥ 200% of the target file size for extraction.</p>
+    </details>
+    <details>
+        <summary>LEGAL & ACKNOWLEDGMENTS</summary>
+        <p>This project functions as a gateway to repositories maintained by the VRP Team. Development will cease upon formal request by primary stakeholders.</p>
+    </details>
+
+    <footer>
+        <p>SQUIRE VR &copy; 2026 | Built for the Quest Community</p>
+    </footer>
+</div>
+
+</body>
+</html>

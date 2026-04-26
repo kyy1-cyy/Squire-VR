@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="#007AFF"/> <!-- Brighter iOS-like Blue -->
+    <corners android:radius="24dp"/> <!-- Slightly less rounded for a sleek look, or keep 100 for pill -->
+    <padding android:left="32dp" android:right="32dp" android:top="12dp" android:bottom="12dp"/>
+    <stroke android:width="0dp" android:color="#00000000"/>
+</shape>

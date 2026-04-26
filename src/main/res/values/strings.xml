@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Squire VR</string>
+    <string name="update_available">Squire Update Available</string>
+    <string name="download_update">Download Update</string>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#ff1e1e1e">
+
+    <TextView
+        android:id="@+id/rate_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rate Game"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/rate_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Select 1 to 5 stars"
+        android:textColor="#ffaaaaaa"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:id="@+id/rate_stars_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/rate_star_1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:minWidth="0dp"
+            android:text="1"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:backgroundTint="#ff333333" />
+
+        <Button
+            android:id="@+id/rate_star_2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:minWidth="0dp"
+            android:text="2"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:backgroundTint="#ff333333" />
+
+        <Button
+            android:id="@+id/rate_star_3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:minWidth="0dp"
+            android:text="3"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:backgroundTint="#ff333333" />
+
+        <Button
+            android:id="@+id/rate_star_4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:minWidth="0dp"
+            android:text="4"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:backgroundTint="#ff333333" />
+
+        <Button
+            android:id="@+id/rate_star_5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:minWidth="0dp"
+            android:text="5"
+            android:textAllCaps="false"
+            android:textColor="#ffffffff"
+            android:backgroundTint="#ff333333" />
+    </LinearLayout>
+</LinearLayout>

@@ -36,7 +36,6 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 | :--- | :--- |
 | **AUTONOMOUS** | Native execution on Quest; zero external dependencies. |
 | **RESILIENCE** | Smart-Resume protocols for interrupted data streams. |
-| **AUTOMATION** | AutoSideload logic for seamless APK/OBB deployment. |
 | **SYNC** | Real-time version comparison between local storage and mirrors. |
 | **DATABASE** | High-concurrency SQL engine for optimized metadata caching. |
 | **VISUALS** | Integrated media engine for high-fidelity gameplay trailers. |

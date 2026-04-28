@@ -26,6 +26,9 @@ resources/lib/
 # Native libraries (keep locally but don't commit to GitHub)
 src/main/jniLibs/
 
+# Gradle distribution (too large for GitHub)
+gradle-*.zip
+
 # Cache/artifacts
 captures/
 .externalNativeBuild/

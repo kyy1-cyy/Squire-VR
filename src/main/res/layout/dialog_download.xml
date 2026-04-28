@@ -69,9 +69,12 @@
                 android:text="Background"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_pill"
                 android:backgroundTint="#ff333333"
-                app:cornerRadius="18dp"/>
+                android:stateListAnimator="@null"/>
             <Button
                 android:textSize="12sp"
                 android:textColor="#ffffffff"
@@ -81,9 +84,12 @@
                 android:text="Pause"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_pill"
                 android:backgroundTint="#ff333333"
-                app:cornerRadius="18dp"/>
+                android:stateListAnimator="@null"/>
             <Button
                 android:textSize="12sp"
                 android:textColor="#ffff4444"
@@ -93,8 +99,11 @@
                 android:text="Cancel"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:background="@drawable/btn_pill"
                 android:backgroundTint="#ff333333"
-                app:cornerRadius="18dp"/>
+                android:stateListAnimator="@null"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

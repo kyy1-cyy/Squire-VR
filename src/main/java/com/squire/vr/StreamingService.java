@@ -22,13 +22,104 @@ import org.json.JSONObject;
 
 public class StreamingService extends Service {
     private static final String TAG = "TRDStreaming";
+    private static volatile StreamingService INSTANCE;
     private volatile Process rcloneProcess;
     private volatile Process p7zipProcess;
     private volatile boolean isStopped = false;
+    private volatile boolean isPaused = false;
     private boolean isSuccess = false;
+
+    // POSIX signal numbers — Android's android.os.Process.sendSignal accepts
+    // raw ints, and signal numbers are stable across Linux/Android.
+    private static final int SIGSTOP = 19;
+    private static final int SIGCONT = 18;
+
+    /**
+     * Suspend the in-flight rclone download. The process is frozen by the
+     * kernel — every open HTTP connection, every byte already buffered, and
+     * the *.partial scratch files all stay exactly as they are. Returns true
+     * if a download was actually paused.
+     */
+    public static boolean pauseDownload() {
+        StreamingService svc = INSTANCE;
+        if (svc == null) return false;
+        Process p = svc.rcloneProcess;
+        if (p == null) return false;
+        int pid = svc.getProcessPid(p);
+        if (pid <= 0) return false;
+        try {
+            android.os.Process.sendSignal(pid, SIGSTOP);
+            svc.isPaused = true;
+            return true;
+        } catch (Throwable t) {
+            Log.e(TAG, "pauseDownload: failed to send SIGSTOP", t);
+            return false;
+        }
+    }
+
+    /**
+     * Continue a previously paused rclone download. Resets speed-smoothing
+     * state so the first reading after the pause isn't averaged across the
+     * entire pause duration. Returns true if a paused download was resumed.
+     */
+    public static boolean resumeDownload() {
+        StreamingService svc = INSTANCE;
+        if (svc == null) return false;
+        Process p = svc.rcloneProcess;
+        if (p == null) return false;
+        if (!svc.isPaused) return false;
+        int pid = svc.getProcessPid(p);
+        if (pid <= 0) return false;
+        try {
+            android.os.Process.sendSignal(pid, SIGCONT);
+            svc.isPaused = false;
+            // Recalibrate the speed/eta sliding window so the first byte
+            // delta after resume isn't divided by the whole pause duration.
+            svc.lastProgressUpdate = 0;
+            svc.lastSmoothedSpeed = 0;
+            return true;
+        } catch (Throwable t) {
+            Log.e(TAG, "resumeDownload: failed to send SIGCONT", t);
+            return false;
+        }
+    }
+
+    public static boolean isDownloadActive() {
+        StreamingService svc = INSTANCE;
+        return svc != null && svc.rcloneProcess != null;
+    }
+
+    private int getProcessPid(Process p) {
+        if (p == null) return -1;
+        try {
+            java.lang.reflect.Field f = p.getClass().getDeclaredField("pid");
+            f.setAccessible(true);
+            return f.getInt(p);
+        } catch (Throwable ignored) {}
+        // Fallback: parse Process.toString(), which on Android is
+        // "Process[pid=12345]".
+        try {
+            String s = p.toString();
+            int i = s.indexOf("pid=");
+            if (i >= 0) {
+                int j = i + 4;
+                int end = j;
+                while (end < s.length() && Character.isDigit(s.charAt(end))) end++;
+                if (end > j) return Integer.parseInt(s.substring(j, end));
+            }
+        } catch (Throwable ignored) {}
+        return -1;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        INSTANCE = this;
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        INSTANCE = this;
         String releaseName = intent.getStringExtra("releaseName");
         String rcloneUrl = intent.getStringExtra("rcloneUrl");
         String baseUri = intent.getStringExtra("baseUri");
@@ -100,6 +191,8 @@ public class StreamingService extends Service {
             cmd.add(tempDir.getAbsolutePath());
             cmd.add("--config");
             cmd.add("/dev/null");
+            cmd.add("--user-agent");
+            cmd.add("rclone/v1.72.1");
             cmd.add("--http-url");
             cmd.add(baseUri);
             cmd.add("--no-check-certificate");
@@ -119,42 +212,71 @@ public class StreamingService extends Service {
 
             ProcessBuilder pb = new ProcessBuilder(cmd);
             pb.environment().put("LD_LIBRARY_PATH", libPath);
-            
+
+            // Snapshot what's already on disk before this rclone session.
+            //   completedAtStart  = bytes in fully-downloaded archive parts
+            //   partialAtStart    = bytes sitting in *.partial scratch files
+            // On a fresh download both are 0. On a Pause -> Resume the sum is
+            // the percentage we should pick up from. We use the sum as a
+            // monotonic floor so the bar can never regress, even if rclone
+            // wipes its scratch files and re-downloads them this session.
+            final long completedAtStart = calculateCompletedBytes(tempDir);
+            final long partialAtStart = calculatePartialBytes(tempDir);
+            final long resumeBaseline = completedAtStart + partialAtStart;
+            final long sessionStartTime = System.currentTimeMillis();
+
+            // Push an initial progress event so the UI immediately reflects
+            // existing bytes when resuming, instead of hovering at 0% until
+            // rclone emits its first stats line.
+            if (resumeBaseline > 0 && estimatedTotalBytes > 0) {
+                long initialTotal = Math.max(estimatedTotalBytes, resumeBaseline);
+                broadcastProgress(releaseName, resumeBaseline, initialTotal, sessionStartTime, resumeBaseline, "Resuming...", "download");
+            }
+
             rcloneProcess = pb.start();
-            
-            // Parse JSON stats for progress
+
+            // Compute progress as (completed-files-on-disk) + (bytes rclone
+            // has transferred this session). rclone's stats.bytes ticks up in
+            // real time as it writes into .partial scratch files, so the bar
+            // moves smoothly from byte 1 on a fresh download. On resume we
+            // also clamp to resumeBaseline so the bar can't regress while
+            // rclone is re-downloading bytes it lost.
             BufferedReader reader = new BufferedReader(new InputStreamReader(rcloneProcess.getErrorStream()));
             String line;
             long totalBytes = estimatedTotalBytes > 0 ? estimatedTotalBytes : 0;
-            long transferredBytes = 0;
-            long sessionStartTime = System.currentTimeMillis();
-            long sessionTransferred = 0;
-            
+            long lastReportedCurrent = resumeBaseline;
+
             while ((line = reader.readLine()) != null) {
                 if (isStopped) break;
-                
-                // Parse JSON stats from rclone
+
                 if (line.trim().startsWith("{")) {
                     try {
                         JSONObject json = new JSONObject(line);
                         if (json.has("stats")) {
                             JSONObject stats = json.getJSONObject("stats");
-                            if (stats.has("bytes") && stats.has("totalBytes")) {
-                                transferredBytes = stats.getLong("bytes");
-                                long total = stats.getLong("totalBytes");
-                                if (total > 0) totalBytes = total;
-                                sessionTransferred = transferredBytes;
-                                
-                                long now = System.currentTimeMillis();
-                                broadcastProgress(releaseName, transferredBytes, totalBytes, sessionStartTime, sessionTransferred, "Downloading...", "download");
-                            }
+                            long sessionBytes = stats.optLong("bytes", 0L);
+                            long sessionTotalRemaining = stats.optLong("totalBytes", 0L);
+
+                            long completedNow = calculateCompletedBytes(tempDir);
+                            long candidate = completedNow + Math.max(0L, sessionBytes);
+
+                            // Monotonic floor — bar never goes backward.
+                            long current = Math.max(lastReportedCurrent, candidate);
+                            lastReportedCurrent = current;
+
+                            long total = totalBytes;
+                            long projected = completedNow + Math.max(sessionTotalRemaining, sessionBytes);
+                            if (projected > total) total = projected;
+                            if (current > total) total = current;
+
+                            broadcastProgress(releaseName, current, total, sessionStartTime, current, "Downloading...", "download");
                         }
                     } catch (Exception e) {
                         // Ignore JSON parse errors
                     }
                 }
             }
-            
+
             if (isStopped) return;
             int exit = rcloneProcess.waitFor();
             if (exit != 0) {
@@ -281,6 +403,49 @@ public class StreamingService extends Service {
         }
         file.delete();
     }
+
+    // Sum of fully-completed archive parts in a download directory tree.
+    // Skips rclone's *.partial scratch files because those represent an
+    // in-flight transfer whose byte count is tracked separately.
+    private long calculateCompletedBytes(File dir) {
+        if (dir == null || !dir.exists() || !dir.isDirectory()) return 0L;
+        long size = 0L;
+        File[] files = dir.listFiles();
+        if (files == null) return 0L;
+        for (File f : files) {
+            if (f == null) continue;
+            if (f.isDirectory()) {
+                size += calculateCompletedBytes(f);
+            } else if (f.isFile()) {
+                String name = f.getName();
+                if (name.endsWith(".partial") || name.endsWith(".partial~")) continue;
+                size += f.length();
+            }
+        }
+        return size;
+    }
+
+    // Sum of bytes sitting in rclone's *.partial scratch files. Used to
+    // establish a "you were here" floor on resume so the progress bar
+    // doesn't drop back to 0% if you paused mid-archive part.
+    private long calculatePartialBytes(File dir) {
+        if (dir == null || !dir.exists() || !dir.isDirectory()) return 0L;
+        long size = 0L;
+        File[] files = dir.listFiles();
+        if (files == null) return 0L;
+        for (File f : files) {
+            if (f == null) continue;
+            if (f.isDirectory()) {
+                size += calculatePartialBytes(f);
+            } else if (f.isFile()) {
+                String name = f.getName();
+                if (name.endsWith(".partial") || name.endsWith(".partial~")) {
+                    size += f.length();
+                }
+            }
+        }
+        return size;
+    }
     
     private JSONArray listFiles(String hash, String baseUri) throws Exception {
         String libPath = getApplicationInfo().nativeLibraryDir;
@@ -290,7 +455,7 @@ public class StreamingService extends Service {
         new File(rclonePath).setExecutable(true);
         
         ProcessBuilder pb = new ProcessBuilder(rclonePath, "lsjson", "--config", "/dev/null",
-                "--user-agent", "rclone/v1.68.2",
+                "--user-agent", "rclone/v1.72.1",
                 "--no-check-certificate",
                 "--http-url", baseUri, ":http:" + hash + "/");
         pb.environment().put("LD_LIBRARY_PATH", libPath);
@@ -406,7 +571,14 @@ public class StreamingService extends Service {
     @Override
     public void onDestroy() {
         isStopped = true;
+        // If rclone is currently SIGSTOP'd we still need it to die. Process.destroy()
+        // sends SIGKILL on Android, which bypasses SIGSTOP, so this is safe even
+        // for a paused process — but bump SIGCONT first to be belt-and-braces.
         if (rcloneProcess != null) {
+            try {
+                int pid = getProcessPid(rcloneProcess);
+                if (pid > 0 && isPaused) android.os.Process.sendSignal(pid, SIGCONT);
+            } catch (Throwable ignored) {}
             rcloneProcess.destroy();
             rcloneProcess = null;
         }
@@ -414,6 +586,8 @@ public class StreamingService extends Service {
             p7zipProcess.destroy();
             p7zipProcess = null;
         }
+        isPaused = false;
+        if (INSTANCE == this) INSTANCE = null;
         super.onDestroy();
     }
 }

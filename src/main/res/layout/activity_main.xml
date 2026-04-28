@@ -52,9 +52,12 @@
                     android:text="All"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff007aff"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -64,9 +67,12 @@
                     android:text="Installed"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -76,9 +82,12 @@
                     android:text="Updates"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -88,9 +97,12 @@
                     android:text="Favorites (0)"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -101,9 +113,12 @@
                     android:visibility="gone"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -113,9 +128,12 @@
                     android:text="Storage"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff444444"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -125,9 +143,12 @@
                     android:text="Queue"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textSize="12sp"
                     android:textColor="#ffffffff"
@@ -137,9 +158,12 @@
                     android:text="Resync"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
                     android:layout_marginEnd="8dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
                 <Button
                     android:textColor="#ffffffff"
                     android:id="@+id/btn_sort"
@@ -149,8 +173,11 @@
                     android:text="Sort"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff333333"
-                    app:cornerRadius="18dp"/>
+                    android:stateListAnimator="@null"/>
             </LinearLayout>
         </HorizontalScrollView>
         <androidx.cardview.widget.CardView
@@ -270,8 +297,8 @@
                     android:textSize="11sp"
                     android:textColor="#ffffffff"
                     android:id="@+id/dl_bg_status_view_btn"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="12dp"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="0dp"
@@ -279,7 +306,9 @@
                     android:text="VIEW"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
+                    android:background="@drawable/btn_pill"
                     android:backgroundTint="#ff3d3d3d"
+                    android:stateListAnimator="@null"
                     app:cornerRadius="16dp"/>
             </LinearLayout>
             <ProgressBar

@@ -1333,29 +1333,7 @@ public class MainActivity extends AppCompatActivity {
         });
         
         if (btnPause != null) {
-            btnPause.setOnClickListener(v -> {
-                // Pause logic: Stop service, keep files, but DO NOT dismiss dialog immediately
-                // Instead, update UI to show "Resume" state
-                stopService(new Intent(MainActivity.this, StreamingService.class));
-                
-                // Update dialog UI to reflect paused state
-                dlStatus.setText("Paused");
-                dlSpeedEta.setText("0 MB/s • --:--");
-                btnPause.setText("Resume");
-                
-                // Toggle listener to restart download if clicked again
-                btnPause.setOnClickListener(v2 -> {
-                    // Resume logic: Dismiss current dialog (to reset state) and restart download
-                    // The startDownload logic handles resuming automatically if files exist
-                    customProgressDialog.dismiss();
-                    Game gameToResume = currentDownloadingGame;
-                    // FIX: Set currentDownloadingGame to null so startDownload knows it's a new request (resume) and not a queue add
-                    currentDownloadingGame = null;
-                    if (gameToResume != null) {
-                        startDownload(gameToResume);
-                    }
-                });
-            });
+            attachPauseHandler(btnPause);
         }
         
         btnCancel.setOnClickListener(v -> {
@@ -1403,6 +1381,68 @@ public class MainActivity extends AppCompatActivity {
         if (customProgressDialog != null && customProgressDialog.isShowing() && dlStatus != null) {
             dlStatus.setText(msg);
         }
+    }
+
+    // Attaches the pause click handler. Pause sends SIGSTOP to the running
+    // rclone process so the kernel freezes it in place — every byte already
+    // received and every open HTTP connection is preserved exactly as-is.
+    // Resume sends SIGCONT and rclone picks up the next byte without
+    // re-downloading anything. The dialog is never recreated, and the bar
+    // physically can't drop because rclone's session bytes only ever grow.
+    //
+    // Falls back to a fresh service start only if the in-process service
+    // reference has been lost (e.g. Android killed the service for memory).
+    private void attachPauseHandler(final Button btnPause) {
+        btnPause.setText("Pause");
+        btnPause.setOnClickListener(v -> {
+            boolean paused = StreamingService.pauseDownload();
+            if (!paused) {
+                // Service died — fall back to old stop-and-restart behaviour.
+                stopService(new Intent(MainActivity.this, StreamingService.class));
+            }
+            if (dlStatus != null) dlStatus.setText("Paused");
+            if (dlSpeedEta != null) dlSpeedEta.setText("0 MB/s • --:--");
+            btnPause.setText("Resume");
+            btnPause.setOnClickListener(v2 -> {
+                Game game = currentDownloadingGame;
+                if (game == null) return;
+                boolean resumed = StreamingService.resumeDownload();
+                if (resumed) {
+                    if (dlStatus != null) dlStatus.setText("Downloading...");
+                    if (dlSpeedEta != null) dlSpeedEta.setText("Calculating...");
+                    attachPauseHandler(btnPause);
+                    return;
+                }
+                // Fallback: service was killed while paused. Restart it from
+                // scratch — disk-baseline logic in StreamingService will pick
+                // up any completed parts.
+                if (dlStatus != null) dlStatus.setText("Resuming...");
+                if (dlSpeedEta != null) dlSpeedEta.setText("Calculating...");
+                attachPauseHandler(btnPause);
+                Intent intent = buildStreamingIntent(game);
+                if (intent != null) startService(intent);
+            });
+        });
+    }
+
+    private Intent buildStreamingIntent(Game game) {
+        if (game == null) return null;
+        long totalBytes;
+        try {
+            String cleanSize = game.sizeMb.trim().toUpperCase();
+            double val = Double.parseDouble(cleanSize.replace(" GB", "").replace(" MB", "").trim());
+            totalBytes = cleanSize.contains("GB") ? (long) (val * 1024.0d * 1024.0d * 1024.0d) : (long) (val * 1024.0d * 1024.0d);
+        } catch (Exception e) {
+            totalBytes = 2147483648L;
+        }
+        Intent intent = new Intent(this, StreamingService.class);
+        intent.putExtra("releaseName", game.releaseName);
+        intent.putExtra("rcloneUrl", game.md5Hash);
+        intent.putExtra("baseUri", game.baseUri);
+        intent.putExtra("savePath", "/sdcard/Download/Squire Vr Games/" + game.releaseName);
+        intent.putExtra("totalBytes", totalBytes);
+        intent.putExtra("password", game.password);
+        return intent;
     }
 
     public void showCustomSortMenu() {
@@ -1539,6 +1579,7 @@ public class MainActivity extends AppCompatActivity {
                             archiveUrl,
                             outArchive.getAbsolutePath(),
                             "--config", "/dev/null",
+                            "--user-agent", "rclone/v1.72.1",
                             "--no-check-certificate",
                             "--progress",
                             "--stats", "1s",

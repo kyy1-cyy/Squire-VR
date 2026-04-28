@@ -91,13 +91,16 @@
     <Button
         android:id="@+id/btn_close"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="Back to Library"
         android:layout_marginTop="48dp"
+        android:background="@drawable/btn_pill"
         android:backgroundTint="#ff333333"
         android:textColor="#ffffffff"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        app:cornerRadius="24dp"/>
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:stateListAnimator="@null"/>
 
 </LinearLayout>

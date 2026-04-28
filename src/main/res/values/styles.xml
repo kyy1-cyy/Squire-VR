@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Material3.DynamicColors.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:colorBackground">#121212</item>
+        <item name="colorPrimary">#007AFF</item>
+        <item name="colorPrimaryContainer">#007AFF</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSurface">#1E1E1E</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="colorError">#FF5252</item>
+    </style>
+</resources>

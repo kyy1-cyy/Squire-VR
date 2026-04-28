@@ -85,20 +85,28 @@
                             android:textColor="#ffffffff"
                             android:id="@+id/btn_start_wireless"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="44dp"
                             android:text="Start (Wireless)"
                             android:layout_weight="1"
                             android:layout_marginEnd="8dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:background="@drawable/btn_pill"
                             android:backgroundTint="#ff007aff"
-                            app:cornerRadius="12dp"/>
+                            android:stateListAnimator="@null"/>
                         <Button
                             android:textColor="#ffffffff"
                             android:id="@+id/btn_start_root"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="44dp"
                             android:text="Root"
+                            android:paddingLeft="22dp"
+                            android:paddingRight="22dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"
+                            android:background="@drawable/btn_pill"
                             android:backgroundTint="#ff333333"
-                            app:cornerRadius="12dp"/>
+                            android:stateListAnimator="@null"/>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -41,7 +41,7 @@
     <application
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:label="Squire VR"
-        android:icon="@android:drawable/sym_def_app_icon"
+        android:icon="@drawable/ic_launcher"
         android:debuggable="true"
         android:allowBackup="true"
         android:supportsRtl="true"

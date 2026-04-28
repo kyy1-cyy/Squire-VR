@@ -19,7 +19,7 @@
 For system troubleshooting, bug reports, or general assistance, join the **Squire VR** headquarters. 
 
 > [!TIP]
-> **Join the Discord:** [discord.gg/w7rg7Ca4YD](https://discord.gg/w7rg7Ca4YD)
+> **Join the Discord:** [discord.gg/w7rg7Ca4YD](https://discord.gg/2k9fRDQkwb)
 > *Any help needed will be answered in the discord.*
 
 

@@ -2,7 +2,7 @@
   <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" width="320" />
 <div align="center">
 
-# Not maintained. Any contributors happy to keep it alive 
+# Not maintained. Any contributors are happy to keep it alive 
 # ⚔️ SQUIRE VR
 **The definitive standalone sideloading ecosystem for Meta Quest.**
 

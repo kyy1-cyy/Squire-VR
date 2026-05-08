@@ -64,12 +64,5 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 
 ---
 
-### ◈ DIAGNOSTICS & SUPPORT
-* **NULL_POINTER_ERROR:** Verify that "All Files Access" is active and mirror servers are operational.
-* **STORAGE_EXHAUSTION:** Ensure available capacity is ≥ 200% of the target file size for extraction.
-* **CONTRIBUTIONS:** Access the Donation Portal to assist with server maintenance and file hosting.
-
----
-
 ### ◈ LEGAL & ACKNOWLEDGMENTS
 > This project functions as a gateway to the repositories maintained by the **VrSrc Team**. Development and distribution will cease immediately upon formal request by the primary stakeholders.

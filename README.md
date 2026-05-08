@@ -34,6 +34,7 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 
 | Component | Technical Specification |
 | :--- | :--- |
+| **RESILIENCE** | resume downloads if the app crashed or wifi cut. Never lose a game download.** |
 | **AUTONOMOUS** | Native execution on Quest; zero external dependencies. |
 | **SYNC** | Real-time version comparison between local storage and mirrors. |
 | **DATABASE** | High-concurrency SQL engine for optimized metadata caching. |

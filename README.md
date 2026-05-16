@@ -50,6 +50,7 @@ Squire VR is a native Android app that lets you browse, download, and manage sid
 ---
 
 ## Screenshots
+> Old but placed here as references
 
 <div align="center">
   <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="49%" />

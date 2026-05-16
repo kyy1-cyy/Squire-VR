@@ -1,10 +1,13 @@
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" width="320" />
+</p>
+
 <div align="center">
 
-# Not maintained. Any contributors are happy to keep it alive 
-# ⚔️ SQUIRE VR
-**The definitive standalone sideloading ecosystem for Meta Quest.**
+ **Not actively maintained — but contributions are always welcome to keep it going.**
+
+# ⚔️ Squire VR
+**A standalone sideloading app built for Meta Quest. No PC required.**
 
 ---
 
@@ -15,37 +18,39 @@
 
 </div>
 
-## 🛠️ Technical Support
-For system troubleshooting, bug reports, or general assistance, join the **Squire VR** headquarters. 
+---
+
+## 🛠️ Support
+
+Got a bug or need help getting things working? Come say hi in the Discord — questions get answered there.
 
 > [!TIP]
-> **Join the Discord:** [discord.gg/w7rg7Ca4YD](https://discord.gg/2k9fRDQkwb)
-> *Any help needed will be answered in the discord.*
-
-
-<br />
-
-### ◈ ARCHITECTURAL OVERVIEW
-**Squire VR** is a high-performance, native Android utility engineered to interface directly with VrSrc servers. By eliminating the necessity for external hardware (PC/Mobile).
+> **Discord:** [discord.gg/w7rg7Ca4YD](https://discord.gg/2k9fRDQkwb)
 
 ---
 
-### ◈ CORE CAPABILITIES
+## What is Squire VR?
 
-| Component | Technical Specification |
+Squire VR is a native Android app that lets you browse, download, and manage sideloaded games directly on your Quest — no phone or PC needed. It talks directly to VrSrc servers and handles everything on-device.
+
+---
+
+## Features
+
+| | |
 | :--- | :--- |
-| **RESILIENCE** | resume downloads if the app crashed or wifi cut. Never lose a game download. |
-| **AUTONOMOUS** | Native execution on Quest; zero external dependencies. |
-| **SYNC** | Real-time version comparison between local storage and mirrors. |
-| **DATABASE** | High-concurrency SQL engine for optimized metadata caching. |
-| **VISUALS** | Integrated media engine for high-fidelity gameplay trailers. |
-| **VALIDATION** | Pre-flight storage diagnostics and integrity checks. |
+| **Resumable Downloads** | If the app crashes or your wifi drops, downloads pick back up where they left off. |
+| **Fully Standalone** | Runs natively on Quest with no external dependencies. |
+| **Version Sync** | Compares your installed versions against the latest available so you're never out of date. |
+| **Fast Metadata** | SQL-backed caching keeps the library loading snappy. |
+| **Storage Checks** | Validates your storage before downloading so nothing goes wrong mid-install. |
 
-> **OPERATIONAL NOTE:** Maintain application focus until the local cache synchronization is verified to ensure library consistency.
+> **Heads up:** Keep the app open until the library finishes syncing on first launch — closing it early can cause it to load incomplete.
 
 ---
 
-### ◈ INTERFACE MANIFEST
+## Screenshots
+
 <div align="center">
   <img src="https://github.com/user-attachments/assets/26b77e3a-b80a-4a26-8958-5987f9646238" width="49%" />
   <img src="https://github.com/user-attachments/assets/6472916c-36f2-4476-a7d5-294e894bc16b" width="49%" />
@@ -56,13 +61,15 @@ For system troubleshooting, bug reports, or general assistance, join the **Squir
 
 ---
 
-### ◈ DEPLOYMENT PROTOCOL
-1. **ACQUISITION** Retrieve the latest `SquireVR.apk` from the [Official Release Channel](https://github.com/kyy1-cyy/Squire-VR/releases/latest).
-2. **INSTALLATION** Sideload the package via your preferred initial installer.
-3. **PROVISIONING** Grant `All Files Access` upon initial execution to permit directory management.
-4. **EXECUTION** Launch via **Library > Unknown Sources**.
+## Installation
+
+1. Grab the latest `SquireVR.apk` from the [Releases page](https://github.com/kyy1-cyy/Squire-VR/releases/latest).
+2. Sideload it using your preferred installer.
+3. On first launch, grant **All Files Access** so the app can manage your game files.
+4. Open it from **Library > Unknown Sources** and you're good to go.
 
 ---
 
-### ◈ LEGAL & ACKNOWLEDGMENTS
-> This project functions as a gateway to the repositories maintained by the **VrSrc Team**. Development and distribution will cease immediately upon formal request by the primary stakeholders.
+## Legal
+
+This app acts as a front-end for content hosted by the **VrSrc Team**. If they ever ask us to stop, we will.

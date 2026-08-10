@@ -1,10 +1,16 @@
+# Anilia - Watch any anime for free on android tv 
+- new project
+## https://github.com/kyy1-cyy/Anilia-
+
+
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/eb2e4187-befa-4bd1-8d31-6baa871c85b0" width="320" />
 </p>
 
 <div align="center">
 
- **Not actively maintained — but contributions are always welcome to keep it going.**
+ **Not actively maintained/working but contributions are always welcome to keep it going.**
 
 # ⚔️ Squire VR
 **A standalone sideloading app built for Meta Quest. No PC required.**

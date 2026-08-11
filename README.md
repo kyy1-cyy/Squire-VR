@@ -16,7 +16,10 @@
 # ⚔️ Squire VR
 **A standalone sideloading app built for Meta Quest. No PC required.**
 
+
 ---
+[![Anilia - Android TV](https://img.shields.io/badge/New_App-Anilia_Android_TV-blue?style=for-the-badge)](https://github.com/kyy1-cyy/Anilia-P)
+
 
 | Status | Distribution | Traffic |
 | :--- | :--- | :--- |

@@ -18,7 +18,7 @@
 
 
 ---
-[![Anilia - Android TV](https://img.shields.io/badge/New_App-Anilia_Android_TV-blue?style=for-the-badge)](https://github.com/kyy1-cyy/Anilia-P)
+[![Anilia - Android TV](https://img.shields.io/badge/New_App-Anilia_Android_TV-blue?style=for-the-badge)](https://github.com/kyy1-cyy/Anilia-)
 
 
 | Status | Distribution | Traffic |

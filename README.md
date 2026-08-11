@@ -1,6 +1,6 @@
 > [!NOTE]
 > 📺 **New Project: Anilia** Watch anime on Android TV!
-> Built from the ground up for big screens. [Check out the Anilia Repository](https://github.com/kyy1-cyy/Anilia-P)
+> Built from the ground up for big screens. [Check out the Anilia Repository](https://github.com/kyy1-cyy/Anilia-)
 
 # still want squire, go down
 

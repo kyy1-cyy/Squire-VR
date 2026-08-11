@@ -1,6 +1,7 @@
-# Anilia - Watch any anime for free on android tv 
-- new project made for android tv from the ground up 
-## [Anili](https://github.com/kyy1-cyy/Anilia-)
+> [!NOTE]
+> 📺 **New Project: Anilia** — Watch anime on Android TV!
+> Built from the ground up for big screens. [Check out the Anilia Repository](https://github.com/kyy1-cyy/Anilia-P)
+
 # still want squire, go down
 
 

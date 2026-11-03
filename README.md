@@ -1,3 +1,26 @@
+<div align="center">
+
+## 🚨 NEW APPS Built for Your TV
+
+Squire VR is no longer maintained, but I've built two new free apps for **Android TV / Google TV**:
+
+[![Lumen](https://img.shields.io/badge/NEW_APP-Lumen_Movies_and_TV-blue?style=for-the-badge)](https://getlumen.cloud)
+[![AniLab](https://img.shields.io/badge/NEW_APP-AniLab_Anime-purple?style=for-the-badge)](https://luminiatv.site)
+
+| 🎬 Lumen | 🍥 AniLab |
+| :--- | :--- |
+| Free movies & TV series in HD, with a remote-friendly TV interface. Search, My List, continue watching, and quality control (Auto / 480p / 720p / 1080p). | Free anime with subbed and dubbed episodes. Airing schedule, continue watching, and My List, with no account needed. |
+| [**Download Lumen**](https://getlumen.cloud/download) | [**Download AniLab**](https://luminiatv.site/download/anilab.apk) |
+| [Join the Telegram](https://t.me/+xq0ThMZhj0ZmYWM1) | [Join the Telegram](https://t.me/+89-lDZkWfFI2NWVl) |
+
+https://luminiatv.site/home.png
+
+> [!TIP]
+> **Easy TV install:** get the free **Downloader** app, then enter code `2876875` to grab AniLab.
+
+</div>
+
+---
 
 
 # still want squire, go down
@@ -16,7 +39,6 @@
 
 
 ---
-[![Anilia - Android TV](https://img.shields.io/badge/New_App-Anilia_Android_TV-blue?style=for-the-badge)](https://github.com/kyy1-cyy/Anilia-)
 
 
 | Status | Distribution | Traffic |

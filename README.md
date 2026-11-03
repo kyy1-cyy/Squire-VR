@@ -13,7 +13,6 @@ Squire VR is no longer maintained, but I've built two new free apps for **Androi
 | [**Download Lumen**](https://getlumen.cloud/download) | [**Download AniLab**](https://luminiatv.site/download/anilab.apk) |
 | [Join the Telegram](https://t.me/+xq0ThMZhj0ZmYWM1) | [Join the Telegram](https://t.me/+89-lDZkWfFI2NWVl) |
 
-https://luminiatv.site/home.png
 
 > [!TIP]
 > **Easy TV install:** get the free **Downloader** app, then enter code `2876875` to grab AniLab.

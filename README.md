@@ -14,7 +14,7 @@ Squire VR is no longer maintained, but I've built two new free apps for **Androi
 | [Join the Telegram](https://t.me/+xq0ThMZhj0ZmYWM1) | [Join the Telegram](https://t.me/+89-lDZkWfFI2NWVl) |
 
 
-> [!TIP]
+>[!TIP]
 > **Easy TV install:** get the free **Downloader** app, then enter code `2876875` to grab AniLab.
 
 </div>

@@ -7,7 +7,7 @@ Squire VR is no longer maintained, but I've built two new free apps for **Androi
 [![Lumen](https://img.shields.io/badge/NEW_APP-Lumen_Movies_and_TV-blue?style=for-the-badge)](https://getlumen.cloud)
 [![AniLab](https://img.shields.io/badge/NEW_APP-AniLab_Anime-purple?style=for-the-badge)](https://luminiatv.site)
 
-| 🎬 Lumen | 🍥 AniLab |
+| 🎬 Lumen | 🍥 AniLab (Revived) |
 | :--- | :--- |
 | Free movies & TV series in HD, with a remote-friendly TV interface. Search, My List, continue watching, and quality control (Auto / 480p / 720p / 1080p). | Free anime with subbed and dubbed episodes. Airing schedule, continue watching, and My List, with no account needed. |
 | [**Go to Lumen**](https://getlumen.cloud) | [**Go To AniLab**](https://luminiatv.site/) |

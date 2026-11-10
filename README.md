@@ -10,7 +10,7 @@ Squire VR is no longer maintained, but I've built two new free apps for **Androi
 | 🎬 Lumen | 🍥 AniLab |
 | :--- | :--- |
 | Free movies & TV series in HD, with a remote-friendly TV interface. Search, My List, continue watching, and quality control (Auto / 480p / 720p / 1080p). | Free anime with subbed and dubbed episodes. Airing schedule, continue watching, and My List, with no account needed. |
-| [**Download Lumen**](https://getlumen.cloud/download) | [**Download AniLab**](https://luminiatv.site/download/anilab.apk) |
+| [**Go to Lumen**](https://getlumen.cloud) | [**Go To AniLab**](https://luminiatv.site/) |
 | [Join the Telegram](https://t.me/+xq0ThMZhj0ZmYWM1) | [Join the Telegram](https://t.me/+89-lDZkWfFI2NWVl) |
 
 
